@@ -1,4 +1,4 @@
-package de.snake;
+package de.snake.menu;
 
 import javax.swing.*;
 
@@ -7,13 +7,9 @@ import javax.swing.*;
  * <p>
  * Copyright by Niklas Emmrich.
  */
-public class Snake {
+public class IngameMenu extends JPanel {
 
-    private static Snake instance;
-
-    public Snake() {
-        instance = this;
+    public IngameMenu() {
+        
     }
-
-
 }
