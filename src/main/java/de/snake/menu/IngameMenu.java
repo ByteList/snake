@@ -7,7 +7,7 @@ import javax.swing.*;
  * <p>
  * Copyright by Niklas Emmrich.
  */
-public class IngameMenu extends JPanel {
+public class IngameMenu extends SnakeMenu {
 
     public IngameMenu() {
         

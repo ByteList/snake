@@ -1,6 +1,6 @@
 package de.snake;
 
-import javax.swing.*;
+import de.snake.menu.SnakeMenu;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -15,5 +15,12 @@ public class Snake {
         instance = this;
     }
 
+    public void loadSnakeMenu(SnakeMenu snakeMenu) {
+
+    }
+
+    public static Snake getInstance() {
+        return instance;
+    }
 
 }

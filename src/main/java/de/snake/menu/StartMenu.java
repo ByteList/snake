@@ -5,5 +5,5 @@ package de.snake.menu;
  * <p>
  * Copyright by Niklas Emmrich.
  */
-public class StartMenu {
+public class StartMenu extends SnakeMenu {
 }
