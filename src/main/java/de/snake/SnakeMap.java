@@ -1,6 +1,7 @@
 package de.snake;
 
 public class SnakeMap {
+
     private int x, y;
     private String backgroundPath;
 

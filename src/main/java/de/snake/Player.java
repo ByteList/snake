@@ -8,18 +8,25 @@ import java.util.ArrayList;
  * Copyright by Niklas Emmrich.
  */
 public class Player {
-    private double x, y, speed = 0.3, lineThickness = 3;
+
     private final int id;
     private String displayName;
+    private double x, y, speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
     private final ArrayList<double[]> linePoints = new ArrayList<>();
 
-    public Player(double x, double y, double speed, double lineThickness, int id, String displayName) {
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
-        this.lineThickness = lineThickness;
+    public Player(int id, String displayName, double x, double y) {
         this.id = id;
         this.displayName = displayName;
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public double getX() {
@@ -38,13 +45,6 @@ public class Player {
         return lineThickness;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
 
     public ArrayList<double[]> getLinePoints() {
         return linePoints;
