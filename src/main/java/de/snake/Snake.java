@@ -25,7 +25,7 @@ public class Snake {
 
         this.windowFrame = new JFrame("Snake");
         this.windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.windowFrame.setBounds(50, 50, 900, 600);
+        this.windowFrame.setBounds(100, 100, StaticConstants.WINDOW_WIDTH, StaticConstants.WINDOW_HEIGHT);
     }
 
     public void loadSnakeMenu(SnakeMenu snakeMenu) {
