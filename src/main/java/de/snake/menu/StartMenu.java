@@ -6,4 +6,8 @@ package de.snake.menu;
  * Copyright by Niklas Emmrich.
  */
 public class StartMenu extends SnakeMenu {
+
+    public StartMenu() {
+        super("Snake - Hauptmenü");
+    }
 }

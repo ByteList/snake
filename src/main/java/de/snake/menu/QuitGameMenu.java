@@ -6,4 +6,8 @@ package de.snake.menu;
  * Copyright by Niklas Emmrich.
  */
 public class QuitGameMenu extends SnakeMenu {
+
+    public QuitGameMenu() {
+        super("Snake - Spiel verlassen?");
+    }
 }

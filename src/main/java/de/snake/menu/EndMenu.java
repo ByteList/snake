@@ -6,4 +6,8 @@ package de.snake.menu;
  * Copyright by Niklas Emmrich.
  */
 public class EndMenu extends SnakeMenu {
+
+    public EndMenu() {
+        super("Snake - Spielende");
+    }
 }

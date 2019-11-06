@@ -1,6 +1,7 @@
 package de.snake.bootstrap;
 
 import de.snake.Snake;
+import de.snake.menu.StartMenu;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -13,7 +14,9 @@ public class SnakeLauncher {
         System.out.println("Initializing Snake...");
 
         Snake snake = new Snake();
+        snake.loadSnakeMenu(new StartMenu());
 
 
+        System.out.println("Snake ended.");
     }
 }

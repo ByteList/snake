@@ -10,6 +10,6 @@ import javax.swing.*;
 public class IngameMenu extends SnakeMenu {
 
     public IngameMenu() {
-        
+        super("Snake - Im Spiel");
     }
 }
