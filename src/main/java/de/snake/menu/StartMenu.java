@@ -2,6 +2,7 @@ package de.snake.menu;
 
 import de.snake.StaticConstants;
 
+import javax.swing.*;
 import java.awt.*;
 
 import static de.snake.StaticConstants.*;
@@ -19,7 +20,21 @@ public class StartMenu extends SnakeMenu {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
         g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
+        g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);
+
+        JButton buttonA = new JButton("Button1");
+        this.add(buttonA);
+        buttonA.setBounds(50,50,100,20);
+
+        JButton buttonB = new JButton("Button2");
+        this.add(buttonB);
+        buttonB.setBounds(50,100,100,20);
+
+        JButton buttonC = new JButton("Button3");
+        this.add(buttonC);
+        buttonC.setBounds(50,150,100,20);
+
+
     }
 }
