@@ -41,10 +41,27 @@ public class StartMenu extends SnakeMenu {
         this.add(buttonD);
         buttonD.setBounds(50,230,50,50);
 
-        g.drawString("Player1",120,75 );
-        g.drawString("Player2",120,135 );
-        g.drawString("Player3",120,195 );
-        g.drawString("Player4",120,255 );
+        JButton buttonSwitch = new JButton("ButtonSwitch");
+        this.add(buttonSwitch);
+        buttonSwitch.setBounds(50,500,50,50);
+
+        JButton buttonMapSmall = new JButton("ButtonSwitch");
+        this.add(buttonMapSmall);
+        buttonMapSmall.setBounds(50,500,50,50);
+
+        JButton buttonMapMedium = new JButton("ButtonSwitch");
+        this.add(buttonMapMedium);
+        buttonMapMedium.setBounds(120,500,50,50);
+
+        JButton buttonMapLarge = new JButton("ButtonSwitch");
+        this.add(buttonMapLarge);
+        buttonMapLarge.setBounds(190,650,50,50);
+
+        g.drawString("Player1 A & D",120,75 );
+        g.drawString("Player2 < & >",120,135 );
+        g.drawString("Player3 I & P",120,195 );
+        g.drawString("Player4 B & M",120,255 );
+        g.drawString("Items",120,525 );
 
 
     }
