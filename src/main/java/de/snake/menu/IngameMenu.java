@@ -23,7 +23,7 @@ public class IngameMenu extends SnakeMenu {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
         g.drawString("Spielzeit: "+game.getPlayTime(), 50, 50);
+        g.drawString("TPS: "+game.getTicksPerSecond(), 200, 50);
     }
 }

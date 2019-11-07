@@ -1,9 +1,7 @@
 package de.snake;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Timer;
+import java.sql.Time;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -16,20 +14,29 @@ public class Game {
     private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<SnakeMap> maps = new ArrayList<>();
     private Player winner;
-    private ScheduledFuture gameTimer, counterTimer;
-    private int playTime = 0;
+    private Timer gameTimer, counterTimer;
+    private int playTime = 0, ticksPerSecond = 0;
 
     public Game(int id) {
         this.id = id;
 
-        this.gameTimer = Executors.newSingleThreadScheduledExecutor().schedule(()-> {
+        this.gameTimer = new Timer();
+        this.gameTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ticksPerSecond++;
+                snake.getCurrentMenu().repaint();
+            }
+        }, 0, 100);
 
-            snake.getCurrentMenu().repaint();
-        }, 100, TimeUnit.MILLISECONDS);
-
-        this.counterTimer = Executors.newSingleThreadScheduledExecutor().schedule(()-> {
-            playTime++;
-        }, 1, TimeUnit.SECONDS);
+        this.counterTimer = new Timer();
+        this.counterTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ticksPerSecond = 0;
+                playTime++;
+            }
+        }, 0, 1000);
     }
 
     public int getId() {
@@ -48,15 +55,19 @@ public class Game {
         return winner;
     }
 
-    public ScheduledFuture getGameTimer() {
+    public Timer getGameTimer() {
         return gameTimer;
     }
 
-    public ScheduledFuture getCounterTimer() {
+    public Timer getCounterTimer() {
         return counterTimer;
     }
 
     public int getPlayTime() {
         return playTime;
+    }
+
+    public int getTicksPerSecond() {
+        return ticksPerSecond;
     }
 }
