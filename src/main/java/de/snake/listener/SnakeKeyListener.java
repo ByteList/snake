@@ -1,5 +1,7 @@
 package de.snake.listener;
 
+import de.snake.Snake;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -15,7 +17,7 @@ public class SnakeKeyListener implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-
+        Snake.getInstance().getCurrentMenu().onKeyPressed(e);
     }
 
     public void keyReleased(KeyEvent e) {

@@ -5,6 +5,8 @@ import de.snake.Snake;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -25,5 +27,15 @@ public class IngameMenu extends SnakeMenu {
         super.paint(g);
         g.drawString("Spielzeit: "+game.getPlayTime(), 50, 50);
         g.drawString("TPS: "+game.getTicksPerSecond(), 200, 50);
+    }
+
+    @Override
+    public void onKeyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void onMouseClicked(MouseEvent e) {
+
     }
 }

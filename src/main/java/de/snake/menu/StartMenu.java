@@ -4,6 +4,8 @@ import de.snake.StaticConstants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import static de.snake.StaticConstants.*;
 
@@ -44,6 +46,16 @@ public class StartMenu extends SnakeMenu {
         g.drawString("Player3",120,195 );
         g.drawString("Player4",120,255 );
 
+
+    }
+
+    @Override
+    public void onKeyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void onMouseClicked(MouseEvent e) {
 
     }
 }

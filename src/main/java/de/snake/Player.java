@@ -13,12 +13,15 @@ public class Player {
     private String displayName;
     private double x, y, speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
     private final ArrayList<double[]> linePoints = new ArrayList<>();
+    private final int leftKey, rightKey;
 
-    public Player(int id, String displayName, double x, double y) {
+    public Player(int id, String displayName, double x, double y, int leftKey, int rightKey) {
         this.id = id;
         this.displayName = displayName;
         this.x = x;
         this.y = y;
+        this.leftKey = leftKey;
+        this.rightKey = rightKey;
     }
 
     public int getId() {
@@ -48,5 +51,13 @@ public class Player {
 
     public ArrayList<double[]> getLinePoints() {
         return linePoints;
+    }
+
+    public int getRightKey() {
+        return rightKey;
+    }
+
+    public int getLeftKey() {
+        return leftKey;
     }
 }

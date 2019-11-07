@@ -1,5 +1,7 @@
 package de.snake.listener;
 
+import de.snake.Snake;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -11,7 +13,7 @@ import java.awt.event.MouseListener;
 public class SnakeMouseListener implements MouseListener {
 
     public void mouseClicked(MouseEvent e) {
-
+        Snake.getInstance().getCurrentMenu().onMouseClicked(e);
     }
 
     public void mousePressed(MouseEvent e) {
