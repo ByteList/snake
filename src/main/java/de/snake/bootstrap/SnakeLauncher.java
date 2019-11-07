@@ -17,6 +17,7 @@ public class SnakeLauncher {
         snake.loadSnakeMenu(new StartMenu());
 
 
-        System.out.println("Snake ended.");
+        // ============== DEBUG ==============
+//        snake.startGame();
     }
 }

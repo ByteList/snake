@@ -1,5 +1,6 @@
 package de.snake;
 
+import de.snake.menu.IngameMenu;
 import de.snake.menu.SnakeMenu;
 
 import javax.swing.*;
@@ -45,6 +46,18 @@ public class Snake {
         this.windowFrame.add(snakeMenu);
 
         currentMenu = snakeMenu;
+    }
+
+    public boolean startGame() {
+        if(this.currentGame != null)
+            return false;
+
+        Game game = new Game(games.size());
+
+        this.currentGame = game;
+
+        this.loadSnakeMenu(new IngameMenu());
+        return true;
     }
 
     public static Snake getInstance() {
