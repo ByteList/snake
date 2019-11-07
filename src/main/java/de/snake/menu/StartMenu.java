@@ -25,15 +25,24 @@ public class StartMenu extends SnakeMenu {
 
         JButton buttonA = new JButton("Button1");
         this.add(buttonA);
-        buttonA.setBounds(50,50,100,20);
+        buttonA.setBounds(50,50,50,50);
 
         JButton buttonB = new JButton("Button2");
         this.add(buttonB);
-        buttonB.setBounds(50,100,100,20);
+        buttonB.setBounds(50,110,50,50);
 
         JButton buttonC = new JButton("Button3");
         this.add(buttonC);
-        buttonC.setBounds(50,150,100,20);
+        buttonC.setBounds(50,170,50,50);
+
+        JButton buttonD = new JButton("Button4");
+        this.add(buttonD);
+        buttonD.setBounds(50,230,50,50);
+
+        g.drawString("Player1",120,75 );
+        g.drawString("Player2",120,135 );
+        g.drawString("Player3",120,195 );
+        g.drawString("Player4",120,255 );
 
 
     }
