@@ -1,10 +1,15 @@
 package de.snake;
 
+import de.snake.listener.SnakeKeyListener;
+import de.snake.listener.SnakeMouseListener;
 import de.snake.menu.IngameMenu;
 import de.snake.menu.SnakeMenu;
 
 import javax.swing.*;
 import java.util.ArrayList;
+
+import static de.snake.StaticConstants.PLAYER_ONE_KEY_LEFT;
+import static de.snake.StaticConstants.PLAYER_ONE_KEY_RIGHT;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -16,6 +21,7 @@ public class Snake {
     private static Snake instance;
 
     private final ArrayList<Game> games = new ArrayList<>();
+    private final Player playerOne, playerTwo, playerThree, playerFour;
     private Game currentGame;
     private SnakeMenu currentMenu;
 
@@ -24,9 +30,17 @@ public class Snake {
     public Snake() {
         instance = this;
 
+        this.playerOne = new Player(0, "Spieler 1", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
+        this.playerTwo = new Player(1, "Spieler 2", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
+        this.playerThree = new Player(2, "Spieler 3", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
+        this.playerFour = new Player(3, "Spieler 4", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
+
         this.windowFrame = new JFrame("Snake");
         this.windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.windowFrame.setBounds(100, 100, StaticConstants.WINDOW_WIDTH, StaticConstants.WINDOW_HEIGHT);
+
+        this.windowFrame.addKeyListener(new SnakeKeyListener());
+        this.windowFrame.addMouseListener(new SnakeMouseListener());
     }
 
     public void loadSnakeMenu(SnakeMenu snakeMenu) {
@@ -48,6 +62,10 @@ public class Snake {
         currentMenu = snakeMenu;
     }
 
+    public void debug() {
+        this.currentGame.registerPlayer(this.playerOne);
+    }
+
     public boolean startGame() {
         if(this.currentGame != null)
             return false;
@@ -58,6 +76,23 @@ public class Snake {
 
         this.loadSnakeMenu(new IngameMenu());
         return true;
+    }
+
+
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
+
+    public Player getPlayerThree() {
+        return playerThree;
+    }
+
+    public Player getPlayerFour() {
+        return playerFour;
     }
 
     public static Snake getInstance() {

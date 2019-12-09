@@ -75,6 +75,11 @@ public class StartMenu extends SnakeMenu {
     }
 
     @Override
+    public void onKeyReleased(KeyEvent e) {
+
+    }
+
+    @Override
     public void onMouseClicked(MouseEvent e) {
 
     }

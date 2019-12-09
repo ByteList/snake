@@ -14,14 +14,26 @@ public class Player {
     private double x, y, speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
     private final ArrayList<double[]> linePoints = new ArrayList<>();
     private final int leftKey, rightKey;
+    private Direction direction;
+    private boolean directionLocked = false;
 
-    public Player(int id, String displayName, double x, double y, int leftKey, int rightKey) {
+    public Player(int id, String displayName, double x, double y, Direction direction, int leftKey, int rightKey) {
         this.id = id;
         this.displayName = displayName;
         this.x = x;
         this.y = y;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
+        this.direction = direction;
+    }
+
+    public void move(Direction direction) {
+        this.direction = direction;
+    }
+
+    public void setXY(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getId() {
@@ -59,5 +71,17 @@ public class Player {
 
     public int getLeftKey() {
         return leftKey;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public boolean isDirectionLocked() {
+        return directionLocked;
+    }
+
+    public void setDirectionLocked(boolean directionLocked) {
+        this.directionLocked = directionLocked;
     }
 }

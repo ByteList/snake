@@ -20,11 +20,11 @@ public abstract class SnakeMenu extends JPanel {
     public SnakeMenu(String name) {
         this.setSize(snake.getWindowFrame().getWidth(), snake.getWindowFrame().getHeight());
         this.setName(name);
-        this.addKeyListener(new SnakeKeyListener());
-        this.addMouseListener(new SnakeMouseListener());
     }
 
     public abstract void onKeyPressed(KeyEvent e);
+
+    public abstract void onKeyReleased(KeyEvent e);
 
     public abstract void onMouseClicked(MouseEvent e);
 }

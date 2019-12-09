@@ -18,6 +18,7 @@ public class SnakeLauncher {
 
 
         // ============== DEBUG ==============
-//        snake.startGame();
+        snake.startGame();
+        snake.debug();
     }
 }

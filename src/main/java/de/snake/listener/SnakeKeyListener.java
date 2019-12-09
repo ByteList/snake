@@ -13,7 +13,6 @@ import java.awt.event.KeyListener;
 public class SnakeKeyListener implements KeyListener {
 
     public void keyTyped(KeyEvent e) {
-
     }
 
     public void keyPressed(KeyEvent e) {
@@ -21,6 +20,6 @@ public class SnakeKeyListener implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
-
+        Snake.getInstance().getCurrentMenu().onKeyReleased(e);
     }
 }

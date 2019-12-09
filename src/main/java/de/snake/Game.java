@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import static de.snake.StaticConstants.*;
+
 public class Game {
 
     private Snake snake = Snake.getInstance();
@@ -25,6 +27,12 @@ public class Game {
             @Override
             public void run() {
                 ticksPerSecond++;
+
+                players.forEach(player -> {
+                    player.setXY(player.getX() + player.getDirection().getXVal()*player.getSpeed(),
+                            player.getY() + player.getDirection().getYVal()*player.getSpeed());
+                });
+
                 snake.getCurrentMenu().repaint();
             }
         }, 0, 100);
@@ -37,6 +45,14 @@ public class Game {
                 playTime++;
             }
         }, 0, 1000);
+
+    }
+
+    public void registerPlayer(Player player) {
+        if(this.players.contains(player))
+            return;
+
+        this.players.add(player);
     }
 
     public int getId() {
@@ -70,4 +86,5 @@ public class Game {
     public int getTicksPerSecond() {
         return ticksPerSecond;
     }
+
 }
