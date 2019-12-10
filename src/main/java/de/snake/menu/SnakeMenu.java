@@ -1,10 +1,12 @@
 package de.snake.menu;
 
 import de.snake.Snake;
+import de.snake.StaticConstants;
 import de.snake.listener.SnakeKeyListener;
 import de.snake.listener.SnakeMouseListener;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -18,7 +20,7 @@ public abstract class SnakeMenu extends JPanel {
     private final Snake snake = Snake.getInstance();
 
     public SnakeMenu(String name) {
-        this.setSize(snake.getWindowFrame().getWidth(), snake.getWindowFrame().getHeight());
+        this.setPreferredSize(new Dimension(StaticConstants.WINDOW_WIDTH, StaticConstants.WINDOW_HEIGHT));
         this.setName(name);
     }
 

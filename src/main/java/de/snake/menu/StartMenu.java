@@ -18,16 +18,24 @@ public class StartMenu extends SnakeMenu {
 
     public StartMenu() {
         super("Snake - Hauptmenü");
+
     }
 
     @Override
-    public void paint(Graphics g) {
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        doDrawing(g);
+    }
+
+    private void doDrawing(Graphics g) {
+
         g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
         g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);
 
         JButton buttonA = new JButton("Button1");
-        this.add(buttonA);
         buttonA.setBounds(50,50,50,50);
+        add(buttonA);
 
         JButton buttonB = new JButton("Button2");
         this.add(buttonB);
@@ -41,19 +49,19 @@ public class StartMenu extends SnakeMenu {
         this.add(buttonD);
         buttonD.setBounds(50,230,50,50);
 
-        JButton buttonSwitch = new JButton("ButtonSwitch");
+        JButton buttonSwitch = new JButton("ButtonSwitch 1");
         this.add(buttonSwitch);
         buttonSwitch.setBounds(50,500,100,40);
 
-        JButton buttonMapSmall = new JButton("ButtonSwitch");
+        JButton buttonMapSmall = new JButton("ButtonSwitch 2");
         this.add(buttonMapSmall);
         buttonMapSmall.setBounds(50,650,30,30);
 
-        JButton buttonMapMedium = new JButton("ButtonSwitch");
+        JButton buttonMapMedium = new JButton("ButtonSwitch 3");
         this.add(buttonMapMedium);
         buttonMapMedium.setBounds(250,650,30,30);
 
-        JButton buttonMapLarge = new JButton("ButtonSwitch");
+        JButton buttonMapLarge = new JButton("ButtonSwitch 4");
         this.add(buttonMapLarge);
         buttonMapLarge.setBounds(450,650,30,30);
 
@@ -66,6 +74,8 @@ public class StartMenu extends SnakeMenu {
         g.drawString("Map Medium",290,667 );
         g.drawString("Map Large",490,667 );
 
+
+        Toolkit.getDefaultToolkit().sync();
 
     }
 

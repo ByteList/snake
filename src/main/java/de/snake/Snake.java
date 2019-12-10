@@ -6,6 +6,7 @@ import de.snake.menu.IngameMenu;
 import de.snake.menu.SnakeMenu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 import static de.snake.StaticConstants.PLAYER_ONE_KEY_LEFT;
@@ -37,7 +38,6 @@ public class Snake {
 
         this.windowFrame = new JFrame("Snake");
         this.windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.windowFrame.setBounds(100, 100, StaticConstants.WINDOW_WIDTH, StaticConstants.WINDOW_HEIGHT);
 
         this.windowFrame.addKeyListener(new SnakeKeyListener());
         this.windowFrame.addMouseListener(new SnakeMouseListener());
@@ -49,15 +49,18 @@ public class Snake {
         }
         if(currentMenu != null) {
             this.windowFrame.remove(currentMenu);
+            this.windowFrame.setVisible(false);
 
         }
 
-        this.windowFrame.setFocusable(true);
-        this.windowFrame.setResizable(false);
-
-        this.windowFrame.setTitle(snakeMenu.getName());
-        this.windowFrame.setVisible(true);
         this.windowFrame.add(snakeMenu);
+        this.windowFrame.setTitle(snakeMenu.getName());
+        this.windowFrame.setResizable(false);
+        this.windowFrame.pack();
+
+        this.windowFrame.setLocationRelativeTo(null);
+        this.windowFrame.setVisible(true);
+
 
         currentMenu = snakeMenu;
     }
