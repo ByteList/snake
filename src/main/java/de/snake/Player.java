@@ -1,6 +1,7 @@
 package de.snake;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -11,29 +12,38 @@ public class Player {
 
     private final int id;
     private String displayName;
-    private double x, y, speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
-    private final ArrayList<double[]> linePoints = new ArrayList<>();
-    private final int leftKey, rightKey;
+    private int speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
+    private int x, y;
+    private final HashMap<int[], Integer> linePoints = new HashMap<>();
     private Direction direction;
-    private boolean directionLocked = false;
+    private boolean alive = true;
 
-    public Player(int id, String displayName, double x, double y, Direction direction, int leftKey, int rightKey) {
+    public Player(int id, String displayName, int x, int y, Direction direction) {
         this.id = id;
         this.displayName = displayName;
-        this.x = x;
-        this.y = y;
-        this.leftKey = leftKey;
-        this.rightKey = rightKey;
-        this.direction = direction;
+
+        this.move(direction);
+        this.setXY(x, y);
     }
 
     public void move(Direction direction) {
         this.direction = direction;
+        System.out.println(direction);
     }
 
-    public void setXY(double x, double y) {
+    public void setXY(int x, int y) {
+        int[] array = new int[] {x, y};
+
+        System.out.println(x+";"+y);
+
         this.x = x;
         this.y = y;
+
+        if(this.linePoints.containsKey(array)) {
+            alive = false;
+            return;
+        }
+        this.linePoints.put(array, this.lineThickness);
     }
 
     public int getId() {
@@ -44,44 +54,32 @@ public class Player {
         return displayName;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public double getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public double getLineThickness() {
+    public int getLineThickness() {
         return lineThickness;
     }
 
 
-    public ArrayList<double[]> getLinePoints() {
+    public HashMap<int[], Integer> getLinePoints() {
         return linePoints;
-    }
-
-    public int getRightKey() {
-        return rightKey;
-    }
-
-    public int getLeftKey() {
-        return leftKey;
     }
 
     public Direction getDirection() {
         return direction;
     }
 
-    public boolean isDirectionLocked() {
-        return directionLocked;
-    }
-
-    public void setDirectionLocked(boolean directionLocked) {
-        this.directionLocked = directionLocked;
+    public boolean isAlive() {
+        return alive;
     }
 }

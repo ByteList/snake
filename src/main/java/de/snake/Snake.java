@@ -31,10 +31,10 @@ public class Snake {
     public Snake() {
         instance = this;
 
-        this.playerOne = new Player(0, "Spieler 1", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
-        this.playerTwo = new Player(1, "Spieler 2", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
-        this.playerThree = new Player(2, "Spieler 3", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
-        this.playerFour = new Player(3, "Spieler 4", 10, 10, Direction.EAST, PLAYER_ONE_KEY_RIGHT, PLAYER_ONE_KEY_LEFT);
+        this.playerOne = new Player(0, "Spieler 1", 100, 100, Direction.EAST);
+        this.playerTwo = new Player(1, "Spieler 2", 10, 10, Direction.EAST);
+        this.playerThree = new Player(2, "Spieler 3", 10, 10, Direction.EAST);
+        this.playerFour = new Player(3, "Spieler 4", 10, 10, Direction.EAST);
 
         this.windowFrame = new JFrame("Snake");
         this.windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,6 +78,7 @@ public class Snake {
         this.currentGame = game;
 
         this.loadSnakeMenu(new IngameMenu());
+        game.start();
         return true;
     }
 

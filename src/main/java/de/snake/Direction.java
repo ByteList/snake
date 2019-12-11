@@ -7,23 +7,34 @@ package de.snake;
  */
 public enum Direction {
 
-    NORTH(0, +1),
-    EAST(+1, 0),
-    SOUTH(0, -1),
-    WEST(-1, 0);
+    NORTH(0, -1, "WEST", "EAST"),
+    EAST(1, 0, "NORTH", "SOUTH"),
+    SOUTH(0, 1, "EAST", "WEST"),
+    WEST(-1, 0, "SOUTH", "NORTH");
 
-    private double xVal, yVal;
+    private int xVal, yVal;
+    private String leftDir, rightDir;
 
-    Direction(double xVal, double yVal) {
+    Direction(int xVal, int yVal, String leftDir, String rightDir) {
         this.xVal = xVal;
         this.yVal = yVal;
+        this.leftDir = leftDir;
+        this.rightDir = rightDir;
     }
 
-    public double getXVal() {
+    public int getXVal() {
         return xVal;
     }
 
-    public double getYVal() {
+    public int getYVal() {
         return yVal;
+    }
+
+    public Direction getLeftDirection() {
+        return Direction.valueOf(leftDir);
+    }
+
+    public Direction getRightDirection() {
+        return Direction.valueOf(rightDir);
     }
 }

@@ -17,27 +17,40 @@ public class Game {
     private final ArrayList<SnakeMap> maps = new ArrayList<>();
     private Player winner;
     private Timer gameTimer, counterTimer;
-    private int playTime = 0, ticksPerSecond = 0;
+    private int playTime = 0, ticksPerSecond = 0, deadPlayers;
 
     public Game(int id) {
         this.id = id;
 
         this.gameTimer = new Timer();
+        this.counterTimer = new Timer();
+    }
+
+    public void start() {
         this.gameTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 ticksPerSecond++;
 
+                if(deadPlayers > players.size()-1) {
+                    gameTimer.cancel();
+                    counterTimer.cancel();
+                }
+
                 players.forEach(player -> {
-                    player.setXY(player.getX() + player.getDirection().getXVal()*player.getSpeed(),
-                            player.getY() + player.getDirection().getYVal()*player.getSpeed());
+                    if(player.isAlive()) {
+                        player.setXY(player.getX() + player.getDirection().getXVal()*player.getSpeed(),
+                                player.getY() + player.getDirection().getYVal()*player.getSpeed());
+
+                        return;
+                    }
+                    deadPlayers++;
                 });
 
                 snake.getCurrentMenu().repaint();
             }
-        }, 0, 100);
+        }, 0, 1000/StaticConstants.GAME_TPS);
 
-        this.counterTimer = new Timer();
         this.counterTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -45,7 +58,6 @@ public class Game {
                 playTime++;
             }
         }, 0, 1000);
-
     }
 
     public void registerPlayer(Player player) {

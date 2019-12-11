@@ -4,14 +4,16 @@ import java.awt.event.KeyEvent;
 
 /**
  * Created by Niklas Emmrich on 05.11.2019.
- * <p>
+ * <p>r
  * Copyright by Niklas Emmrich.
  */
 public class StaticConstants {
 
-    public static final double NORMAL_SPEED = 0.3;
+    public static final int GAME_TPS = 20;
 
-    public static final double POWER_SPEED = 0.6;
+    public static final int NORMAL_SPEED = 3;
+
+    public static final int POWER_SPEED = 5;
 
     public static final int WINDOW_HEIGHT = 750;
 
