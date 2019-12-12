@@ -1,25 +1,42 @@
 package de.snake;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.IOException;
+
 public class SnakeMap {
 
-    private int x, y;
+    private int width, height;
     private String backgroundPath;
 
-    public SnakeMap(int x, int y, String backgroundPath) {
-        this.x = x;
-        this.y = y;
+    private Image backgroundImage;
+
+    public SnakeMap(int width, int height, String backgroundPath) {
+        this.width = width;
+        this.height = height;
         this.backgroundPath = backgroundPath;
+
+        try {
+            Image image  = ImageIO.read(getClass().getResource(backgroundPath));
+            this.backgroundImage = image.getScaledInstance(width, height, 10);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int getX() {
-        return x;
+    public int getWidth() {
+        return width;
     }
 
-    public int getY() {
-        return y;
+    public int getHeight() {
+        return height;
     }
 
     public String getBackgroundPath() {
         return backgroundPath;
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
     }
 }

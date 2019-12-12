@@ -69,11 +69,12 @@ public class Snake {
         this.currentGame.registerPlayer(this.playerOne);
     }
 
-    public boolean startGame() {
+    public boolean startGame(SnakeMap snakeMap) {
         if(this.currentGame != null)
             return false;
 
-        Game game = new Game(games.size());
+        Game game = new Game(games.size(), snakeMap);
+        this.games.add(game);
 
         this.currentGame = game;
 

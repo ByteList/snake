@@ -14,7 +14,7 @@ public class Player {
     private String displayName;
     private int speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
     private int x, y;
-    private final HashMap<int[], Integer> linePoints = new HashMap<>();
+    private final HashMap<String, Integer> linePoints = new HashMap<>();
     private Direction direction;
     private boolean alive = true;
 
@@ -32,18 +32,18 @@ public class Player {
     }
 
     public void setXY(int x, int y) {
-        int[] array = new int[] {x, y};
+        String point = x+";"+y;
 
-        System.out.println(x+";"+y);
+        System.out.println(point);
 
         this.x = x;
         this.y = y;
 
-        if(this.linePoints.containsKey(array)) {
+        if(this.linePoints.containsKey(point)) {
             alive = false;
             return;
         }
-        this.linePoints.put(array, this.lineThickness);
+        this.linePoints.put(point, this.lineThickness);
     }
 
     public int getId() {
@@ -71,7 +71,7 @@ public class Player {
     }
 
 
-    public HashMap<int[], Integer> getLinePoints() {
+    public HashMap<String, Integer> getLinePoints() {
         return linePoints;
     }
 

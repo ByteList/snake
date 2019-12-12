@@ -14,13 +14,14 @@ public class Game {
 
     private final int id;
     private final ArrayList<Player> players = new ArrayList<>();
-    private final ArrayList<SnakeMap> maps = new ArrayList<>();
     private Player winner;
     private Timer gameTimer, counterTimer;
     private int playTime = 0, ticksPerSecond = 0, deadPlayers;
+    private final SnakeMap snakeMap;
 
-    public Game(int id) {
+    public Game(int id, SnakeMap snakeMap) {
         this.id = id;
+        this.snakeMap = snakeMap;
 
         this.gameTimer = new Timer();
         this.counterTimer = new Timer();
@@ -75,9 +76,7 @@ public class Game {
         return Collections.unmodifiableCollection(this.players);
     }
 
-    public Collection<SnakeMap> getMaps() {
-        return Collections.unmodifiableCollection(this.maps);
-    }
+    public SnakeMap getSnakeMap() { return this.snakeMap; }
 
     public Player getWinner() {
         return winner;
