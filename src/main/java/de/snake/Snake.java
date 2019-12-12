@@ -32,8 +32,8 @@ public class Snake {
         instance = this;
 
         this.playerOne = new Player(0, "Spieler 1", 100, 100, Direction.EAST);
-        this.playerTwo = new Player(1, "Spieler 2", 10, 10, Direction.EAST);
-        this.playerThree = new Player(2, "Spieler 3", 10, 10, Direction.EAST);
+        this.playerTwo = new Player(1, "Spieler 2", 300, 10, Direction.EAST);
+        this.playerThree = new Player(2, "Spieler 3", 20, 300, Direction.SOUTH);
         this.playerFour = new Player(3, "Spieler 4", 10, 10, Direction.EAST);
 
         this.windowFrame = new JFrame("Snake");

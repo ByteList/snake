@@ -10,6 +10,8 @@ import java.util.HashMap;
  */
 public class Player {
 
+    private final Snake snake = Snake.getInstance();
+
     private final int id;
     private String displayName;
     private int speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
@@ -39,7 +41,8 @@ public class Player {
         this.x = x;
         this.y = y;
 
-        if(this.linePoints.containsKey(point)) {
+        if(snake.getCurrentGame() != null && (this.linePoints.containsKey(point) || x > snake.getCurrentGame().getSnakeMap().getWidth() ||
+                y > snake.getCurrentGame().getSnakeMap().getHeight() || x < 0 || y < 0)) {
             alive = false;
             return;
         }

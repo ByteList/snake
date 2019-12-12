@@ -69,6 +69,27 @@ public class IngameMenu extends SnakeMenu {
             case StaticConstants.PLAYER_ONE_KEY_RIGHT:
                 playerOne.move(playerOne.getDirection().getRightDirection());
                 break;
+
+            case StaticConstants.PLAYER_TWO_KEY_LEFT:
+                playerTwo.move(playerTwo.getDirection().getLeftDirection());
+                break;
+            case StaticConstants.PLAYER_TWO_KEY_RIGHT:
+                playerTwo.move(playerTwo.getDirection().getRightDirection());
+                break;
+
+            case StaticConstants.PLAYER_THREE_KEY_LEFT:
+                playerThree.move(playerThree.getDirection().getLeftDirection());
+                break;
+            case StaticConstants.PLAYER_THREE_KEY_RIGHT:
+                playerThree.move(playerThree.getDirection().getRightDirection());
+                break;
+
+            case StaticConstants.PLAYER_FOUR_KEY_LEFT:
+                playerFour.move(playerFour.getDirection().getLeftDirection());
+                break;
+            case StaticConstants.PLAYER_FOUR_KEY_RIGHT:
+                playerFour.move(playerFour.getDirection().getRightDirection());
+                break;
         }
     }
 

@@ -22,11 +22,11 @@ public class StaticConstants {
 
     public static final int PLAYER_ONE_KEY_LEFT = KeyEvent.VK_A, PLAYER_ONE_KEY_RIGHT = KeyEvent.VK_D;
 
-    public static final int PLAYER_TWO_KEY_LEFT = KeyEvent.VK_A, PLAYER_TWO_KEY_RIGHT = KeyEvent.VK_D;
+    public static final int PLAYER_TWO_KEY_LEFT = KeyEvent.VK_LEFT, PLAYER_TWO_KEY_RIGHT = KeyEvent.VK_RIGHT;
 
-    public static final int PLAYER_THREE_KEY_LEFT = KeyEvent.VK_A, PLAYER_THREE_KEY_RIGHT = KeyEvent.VK_D;
+    public static final int PLAYER_THREE_KEY_LEFT = KeyEvent.VK_I, PLAYER_THREE_KEY_RIGHT = KeyEvent.VK_P;
 
-    public static final int PLAYER_FOUR_KEY_LEFT = KeyEvent.VK_A, PLAYER_FOUR_KEY_RIGHT = KeyEvent.VK_D;
+    public static final int PLAYER_FOUR_KEY_LEFT = KeyEvent.VK_B, PLAYER_FOUR_KEY_RIGHT = KeyEvent.VK_M;
 
     public static final HashMap<String, SnakeMap> MAPS = new HashMap<String, SnakeMap>() {{
         put("small", new SnakeMap(WINDOW_WIDTH-350-200, WINDOW_HEIGHT-100, "/material/background/small.png"));
