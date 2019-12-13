@@ -17,8 +17,6 @@ import java.awt.event.MouseEvent;
  */
 public abstract class SnakeMenu extends JPanel {
 
-    private final Snake snake = Snake.getInstance();
-
     public SnakeMenu(String name) {
         this.setPreferredSize(new Dimension(StaticConstants.WINDOW_WIDTH, StaticConstants.WINDOW_HEIGHT));
         this.setName(name);

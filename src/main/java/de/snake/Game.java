@@ -14,30 +14,44 @@ public class Game {
 
     private final int id;
     private final ArrayList<Player> players = new ArrayList<>();
-    private final ArrayList<SnakeMap> maps = new ArrayList<>();
     private Player winner;
     private Timer gameTimer, counterTimer;
-    private int playTime = 0, ticksPerSecond = 0;
+    private int playTime = 0, ticksPerSecond = 0, deadPlayers;
+    private final SnakeMap snakeMap;
 
-    public Game(int id) {
+    public Game(int id, SnakeMap snakeMap) {
         this.id = id;
+        this.snakeMap = snakeMap;
 
         this.gameTimer = new Timer();
+        this.counterTimer = new Timer();
+    }
+
+    public void start() {
         this.gameTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 ticksPerSecond++;
 
+                if(deadPlayers > players.size()-1) {
+                    gameTimer.cancel();
+                    counterTimer.cancel();
+                }
+
                 players.forEach(player -> {
-                    player.setXY(player.getX() + player.getDirection().getXVal()*player.getSpeed(),
-                            player.getY() + player.getDirection().getYVal()*player.getSpeed());
+                    if(player.isAlive()) {
+                        player.setXY(player.getX() + player.getDirection().getXVal()*player.getSpeed(),
+                                player.getY() + player.getDirection().getYVal()*player.getSpeed());
+
+                        return;
+                    }
+                    deadPlayers++;
                 });
 
                 snake.getCurrentMenu().repaint();
             }
-        }, 0, 100);
+        }, 0, 1000/StaticConstants.GAME_TPS);
 
-        this.counterTimer = new Timer();
         this.counterTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -45,7 +59,6 @@ public class Game {
                 playTime++;
             }
         }, 0, 1000);
-
     }
 
     public void registerPlayer(Player player) {
@@ -63,9 +76,7 @@ public class Game {
         return Collections.unmodifiableCollection(this.players);
     }
 
-    public Collection<SnakeMap> getMaps() {
-        return Collections.unmodifiableCollection(this.maps);
-    }
+    public SnakeMap getSnakeMap() { return this.snakeMap; }
 
     public Player getWinner() {
         return winner;

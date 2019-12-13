@@ -1,6 +1,7 @@
 package de.snake.bootstrap;
 
 import de.snake.Snake;
+import de.snake.StaticConstants;
 import de.snake.menu.StartMenu;
 
 import javax.swing.*;
@@ -21,8 +22,8 @@ public class SnakeLauncher {
             snake.loadSnakeMenu(new StartMenu());
 
             // ============== DEBUG ==============
-//        snake.startGame();
-//        snake.debug();
+        snake.startGame(StaticConstants.MAPS.get("small"));
+        snake.debug();
         });
     }
 }

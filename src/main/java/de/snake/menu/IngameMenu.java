@@ -1,14 +1,14 @@
 package de.snake.menu;
 
-import de.snake.Direction;
-import de.snake.Game;
-import de.snake.Snake;
-import de.snake.StaticConstants;
+import de.snake.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+
+import static de.snake.StaticConstants.WINDOW_HEIGHT;
+import static de.snake.StaticConstants.WINDOW_WIDTH;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -27,74 +27,75 @@ public class IngameMenu extends SnakeMenu {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.fillRect(WINDOW_WIDTH - 350, 0, 1, WINDOW_HEIGHT);
+
+        g.drawImage(game.getSnakeMap().getBackgroundImage(), 0, 0, this);
+
+        g.fillRect(0, game.getSnakeMap().getHeight(), game.getSnakeMap().getWidth(), 1);
+        g.fillRect(game.getSnakeMap().getWidth(), 0, 1, game.getSnakeMap().getHeight());
+
+
         g.drawString("Spielzeit: "+game.getPlayTime(), 50, 50);
         g.drawString("TPS: "+game.getTicksPerSecond(), 200, 50);
 
-        game.getPlayers().forEach(player -> {
-            g.drawOval((int)player.getX(), (int)player.getY(), 5, 5);
-        });
 
+        game.getPlayers().forEach(player -> {
+            g.setColor(Color.RED);
+            player.getLinePoints().forEach((point, thickness) -> {
+
+                g.fillOval(Integer.parseInt(point.split(";")[0]), Integer.parseInt(point.split(";")[1]),
+                        thickness, thickness);
+            });
+
+            g.setColor(Color.GREEN);
+            g.fillOval(player.getX(), player.getY(), player.getLineThickness(), player.getLineThickness());
+        });
     }
 
     @Override
     public void onKeyPressed(KeyEvent e) {
         Direction direction = null;
+        Player playerOne = snake.getPlayerOne(),
+        playerTwo = snake.getPlayerTwo(),
+        playerThree = snake.getPlayerThree(),
+        playerFour = snake.getPlayerFour();
 
         System.out.println(e.getKeyCode());
 
         switch (e.getKeyCode()) {
             case StaticConstants.PLAYER_ONE_KEY_LEFT:
-                if(snake.getPlayerOne().isDirectionLocked())
-                    break;
-
-                switch (snake.getPlayerOne().getDirection()) {
-                    case NORTH:
-                        direction = Direction.WEST;
-                        break;
-                    case EAST:
-                        direction = Direction.NORTH;
-                        break;
-                    case SOUTH:
-                        direction = Direction.EAST;
-                        break;
-                    case WEST:
-                        direction = Direction.SOUTH;
-                }
-
-                snake.getPlayerOne().move(direction);
+                playerOne.move(playerOne.getDirection().getLeftDirection());
                 break;
             case StaticConstants.PLAYER_ONE_KEY_RIGHT:
-                if(snake.getPlayerOne().isDirectionLocked())
-                    break;
+                playerOne.move(playerOne.getDirection().getRightDirection());
+                break;
 
-                switch (snake.getPlayerOne().getDirection()) {
-                    case NORTH:
-                        direction = Direction.EAST;
-                        break;
-                    case EAST:
-                        direction = Direction.SOUTH;
-                        break;
-                    case SOUTH:
-                        direction = Direction.WEST;
-                        break;
-                    case WEST:
-                        direction = Direction.NORTH;
-                }
+            case StaticConstants.PLAYER_TWO_KEY_LEFT:
+                playerTwo.move(playerTwo.getDirection().getLeftDirection());
+                break;
+            case StaticConstants.PLAYER_TWO_KEY_RIGHT:
+                playerTwo.move(playerTwo.getDirection().getRightDirection());
+                break;
 
-                snake.getPlayerOne().move(direction);
+            case StaticConstants.PLAYER_THREE_KEY_LEFT:
+                playerThree.move(playerThree.getDirection().getLeftDirection());
+                break;
+            case StaticConstants.PLAYER_THREE_KEY_RIGHT:
+                playerThree.move(playerThree.getDirection().getRightDirection());
+                break;
+
+            case StaticConstants.PLAYER_FOUR_KEY_LEFT:
+                playerFour.move(playerFour.getDirection().getLeftDirection());
+                break;
+            case StaticConstants.PLAYER_FOUR_KEY_RIGHT:
+                playerFour.move(playerFour.getDirection().getRightDirection());
                 break;
         }
     }
 
     @Override
     public void onKeyReleased(KeyEvent e) {
-        System.out.println("RE: "+e.getKeyCode());
-        switch (e.getKeyCode()) {
-            case StaticConstants.PLAYER_ONE_KEY_LEFT:
-            case StaticConstants.PLAYER_ONE_KEY_RIGHT:
-                snake.getPlayerOne().setDirectionLocked(false);
-                break;
-        }
+
     }
 
     @Override
