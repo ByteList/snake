@@ -67,6 +67,7 @@ public class Snake {
 
     public void debug() {
         this.currentGame.registerPlayer(this.playerOne);
+        this.currentGame.registerPlayer(this.playerTwo);
     }
 
     public boolean startGame(SnakeMap snakeMap) {
@@ -77,6 +78,9 @@ public class Snake {
         this.games.add(game);
 
         this.currentGame = game;
+
+        game.getPlayers().forEach(player -> game.addLinePoint(player.getX()+";"+player.getY(),
+                player.getLineThickness()));
 
         this.loadSnakeMenu(new IngameMenu());
         game.start();

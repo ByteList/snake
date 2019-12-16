@@ -14,6 +14,7 @@ public class Game {
 
     private final int id;
     private final ArrayList<Player> players = new ArrayList<>();
+    private final HashMap<String, Integer> linePoints = new HashMap<>();
     private Player winner;
     private Timer gameTimer, counterTimer;
     private int playTime = 0, ticksPerSecond = 0, deadPlayers;
@@ -74,6 +75,14 @@ public class Game {
 
     public Collection<Player> getPlayers() {
         return Collections.unmodifiableCollection(this.players);
+    }
+
+    public HashMap<String, Integer> getLinePoints() {
+        return new HashMap<>(this.linePoints);
+    }
+
+    public void addLinePoint(String linePoint, int thickness) {
+        this.linePoints.put(linePoint, thickness);
     }
 
     public SnakeMap getSnakeMap() { return this.snakeMap; }

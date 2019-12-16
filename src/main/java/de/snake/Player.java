@@ -41,12 +41,16 @@ public class Player {
         this.x = x;
         this.y = y;
 
-        if(snake.getCurrentGame() != null && (this.linePoints.containsKey(point) || x > snake.getCurrentGame().getSnakeMap().getWidth() ||
-                y > snake.getCurrentGame().getSnakeMap().getHeight() || x < 0 || y < 0)) {
+        if(snake.getCurrentGame() != null && (snake.getCurrentGame().getLinePoints().containsKey(point) ||
+                x > snake.getCurrentGame().getSnakeMap().getWidth() ||
+                y > snake.getCurrentGame().getSnakeMap().getHeight() ||
+                x < 0 || y < 0)) {
             alive = false;
             return;
         }
         this.linePoints.put(point, this.lineThickness);
+        if(snake.getCurrentGame() != null)
+            snake.getCurrentGame().addLinePoint(point, this.lineThickness);
     }
 
     public int getId() {
