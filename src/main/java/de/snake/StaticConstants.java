@@ -30,8 +30,8 @@ public class StaticConstants {
 
     public static final HashMap<String, SnakeMap> MAPS = new HashMap<String, SnakeMap>() {{
         put("small", new SnakeMap(WINDOW_WIDTH-350-200, WINDOW_HEIGHT-100, "/material/background/small.png"));
-        put("middle", new SnakeMap(WINDOW_WIDTH-350-100, WINDOW_HEIGHT-50, "/material/background/middle.png"));
-        put("big", new SnakeMap(WINDOW_WIDTH-350, WINDOW_HEIGHT, "/material/background/big.png"));
+        put("medium", new SnakeMap(WINDOW_WIDTH-350-100, WINDOW_HEIGHT-50, "/material/background/middle.png"));
+        put("large", new SnakeMap(WINDOW_WIDTH-350, WINDOW_HEIGHT, "/material/background/big.png"));
     }};
 
     public static final HashMap<int[], Direction[]> SPAWN_POINTS = new HashMap<int[], Direction[]>() {{

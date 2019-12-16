@@ -70,17 +70,13 @@ public class Snake {
         this.currentGame.registerPlayer(this.playerTwo);
     }
 
-    public boolean startGame(SnakeMap snakeMap) {
+    public boolean startGame(Game game) {
         if(this.currentGame != null)
             return false;
 
-        Game game = new Game(games.size(), snakeMap);
         this.games.add(game);
 
         this.currentGame = game;
-
-        game.getPlayers().forEach(player -> game.addLinePoint(player.getX()+";"+player.getY(),
-                player.getLineThickness()));
 
         this.loadSnakeMenu(new IngameMenu());
         game.start();

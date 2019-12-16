@@ -22,8 +22,8 @@ public class SnakeLauncher {
             snake.loadSnakeMenu(new StartMenu());
 
             // ============== DEBUG ==============
-        snake.startGame(StaticConstants.MAPS.get("small"));
-        snake.debug();
+//        snake.startGame(StaticConstants.MAPS.get("small"));
+//        snake.debug();
         });
     }
 }

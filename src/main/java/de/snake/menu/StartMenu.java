@@ -1,5 +1,10 @@
 package de.snake.menu;
 
+import de.snake.Game;
+import de.snake.Snake;
+import de.snake.SnakeMap;
+import de.snake.StaticConstants;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +20,8 @@ import static de.snake.StaticConstants.*;
  * Copyright by Niklas Emmrich.
  */
 public class StartMenu extends SnakeMenu {
+
+    private final Snake snake = Snake.getInstance();
 
     private int init = 0;
 
@@ -62,7 +69,9 @@ public class StartMenu extends SnakeMenu {
         setButton(buttonMapSmall, "mapSmall");
         setButton(buttonMapMedium, "mapMedium");
         setButton(buttonMapLarge, "mapLarge");
-        setButton(buttonStartGame, "StartGame", false);
+        setButton(buttonStartGame, "startGame", false);
+
+        buttonStartGame.setActionCommand("click:startGame");
 
         this.add(buttonPlayerOne);
         this.add(buttonPlayerTwo);
@@ -178,6 +187,9 @@ public class StartMenu extends SnakeMenu {
 
                     setButtonEnabled(button, false);
                     break;
+                case "click:startGame":
+                    startGame();
+                    break;
             }
         });
     }
@@ -207,4 +219,38 @@ public class StartMenu extends SnakeMenu {
         }
     }
 
+
+    private void startGame() {
+        SnakeMap snakeMap = null;
+        Game game = null;
+        if(buttonMapSmall.getActionCommand().equals("click:disable")) {
+            snakeMap = MAPS.get("small");
+        } else if(buttonMapMedium.getActionCommand().equals("click:disable")) {
+            snakeMap = MAPS.get("medium");
+        } else if(buttonMapLarge.getActionCommand().equals("click:disable")) {
+            snakeMap = MAPS.get("large");
+        }
+
+        game = new Game(snake.getGames().size(), snakeMap);
+
+        if(buttonPlayerOne.getActionCommand().equals("click:disable")) {
+            game.registerPlayer(snake.getPlayerOne());
+        }
+        if(buttonPlayerTwo.getActionCommand().equals("click:disable")) {
+            game.registerPlayer(snake.getPlayerTwo());
+        }
+        if(buttonPlayerThree.getActionCommand().equals("click:disable")) {
+            game.registerPlayer(snake.getPlayerThree());
+        }
+        if(buttonPlayerFour.getActionCommand().equals("click:disable")) {
+            game.registerPlayer(snake.getPlayerFour());
+        }
+
+        if(game.getPlayers().size() < 2) {
+            JOptionPane.showMessageDialog(this, "Es müssen mindestens 2 Spieler ausgewählt sein!");
+            return;
+        }
+
+        snake.startGame(game);
+    }
 }
