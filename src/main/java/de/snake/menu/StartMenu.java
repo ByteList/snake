@@ -1,12 +1,8 @@
 package de.snake.menu;
 
-import de.snake.StaticConstants;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -19,10 +15,15 @@ import static de.snake.StaticConstants.*;
  * Copyright by Niklas Emmrich.
  */
 public class StartMenu extends SnakeMenu {
-    private final JButton buttonA;
-    private final JButton buttonB;
-    private final JButton buttonC;
-    private final JButton buttonD;
+
+    private int init = 0;
+
+    private ImageIcon enabledImage, disabledImage;
+
+    private final JButton buttonPlayerOne;
+    private final JButton buttonPlayerTwo;
+    private final JButton buttonPlayerThree;
+    private final JButton buttonPlayerFour;
     private final JButton buttonSwitch;
     private final JButton buttonMapSmall;
     private final JButton buttonMapMedium;
@@ -30,127 +31,45 @@ public class StartMenu extends SnakeMenu {
 
     public StartMenu() {
         super("Snake - Hauptmenü");
-        buttonA = new JButton();
-        buttonB = new JButton();
-        buttonC = new JButton();
-        buttonD = new JButton();
-        buttonSwitch = new JButton();
-        buttonMapSmall = new JButton();
-        buttonMapMedium = new JButton();
-        buttonMapLarge = new JButton();
-
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        doDrawing(g);
-//        try {
-//            Image img = ImageIO.read(StartMenu.class.getResourceAsStream("/b_No.PNG"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    }
-
-    private void doDrawing(Graphics g) {
-
-        g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
-        g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);
 
         try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
-
-            buttonA.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
+            this.enabledImage = new ImageIcon(ImageIO.read(getClass().getResource("/material/element/b_Yes.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        buttonA.setContentAreaFilled(false);
-        buttonA.setBorderPainted(false);
-        buttonA.setBounds(50,50,50,50);
-        buttonA.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonA.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonA);
-
         try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
-
-            buttonB.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
+            this.disabledImage = new ImageIcon(ImageIO.read(getClass().getResource("/material/element/b_No.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        buttonB.setContentAreaFilled(false);
-        buttonB.setBorderPainted(false);
-        buttonB.setBounds(50,110,50,50);
-        buttonB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("buttonB");
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonB.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonB);
 
-        try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
+        this.buttonPlayerOne = new JButton();
+        this.buttonPlayerTwo = new JButton();
+        this.buttonPlayerThree = new JButton();
+        this.buttonPlayerFour = new JButton();
+        this.buttonSwitch = new JButton();
+        this.buttonMapSmall = new JButton();
+        this.buttonMapMedium = new JButton();
+        this.buttonMapLarge = new JButton();
 
-            buttonC.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonC.setContentAreaFilled(false);
-        buttonC.setBorderPainted(false);
-        buttonC.setBounds(50,170,50,50);
-        buttonC.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonC.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonC);
 
-        try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
+        setButton(buttonPlayerOne, "playerOne");
+        setButton(buttonPlayerTwo, "playerTwo");
+        setButton(buttonPlayerThree, "playerThree");
+        setButton(buttonPlayerFour, "playerFour");
+        setButton(buttonMapSmall, "mapSmall");
+        setButton(buttonMapMedium, "mapMedium");
+        setButton(buttonMapLarge, "mapLarge");
 
-            buttonD.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonD.setContentAreaFilled(false);
-        buttonD.setBorderPainted(false);
-        buttonD.setBounds(50,230,50,50);
-        buttonD.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonD.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonD);
+        this.add(buttonPlayerOne);
+        this.add(buttonPlayerTwo);
+        this.add(buttonPlayerThree);
+        this.add(buttonPlayerFour);
+        this.add(buttonMapSmall);
+        this.add(buttonMapMedium);
+        this.add(buttonMapLarge);
 
+        setButtonEnabled(buttonMapMedium, true);
 
         try {
             Image img = ImageIO.read(getClass().getResource("/material/items/test.gif"));
@@ -161,77 +80,35 @@ public class StartMenu extends SnakeMenu {
         }
         buttonSwitch.setContentAreaFilled(false);
         buttonSwitch.setBorderPainted(false);
-        buttonSwitch.setBounds(50,500,250,80);
         this.add(buttonSwitch);
+    }
 
-        try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-            buttonMapSmall.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonMapSmall.setContentAreaFilled(false);
-        buttonMapSmall.setBorderPainted(false);
+        doDrawing(g);
+        init = 1;
+    }
+
+    private void doDrawing(Graphics g) {
+
+        g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
+        g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);
+
+
+        buttonPlayerOne.setBounds(50,50,50,50);
+        buttonPlayerTwo.setBounds(50,110,50,50);
+        buttonPlayerThree.setBounds(50,170,50,50);
+        buttonPlayerFour.setBounds(50,230,50,50);
+
+
+        buttonSwitch.setBounds(50,500,250,80);
+
         buttonMapSmall.setBounds(50,650,45,45);
-        buttonMapSmall.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonMapSmall.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonMapSmall);
-
-        try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
-
-            buttonMapMedium.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonMapMedium.setContentAreaFilled(false);
-        buttonMapMedium.setBorderPainted(false);
         buttonMapMedium.setBounds(250,650,45,45);
-        buttonMapMedium.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonMapMedium.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonMapMedium);
-
-        try {
-            Image img = ImageIO.read(getClass().getResource("/material/element/b_No.png"));
-
-            buttonMapLarge.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonMapLarge.setContentAreaFilled(false);
-        buttonMapLarge.setBorderPainted(false);
         buttonMapLarge.setBounds(450,650,45,45);
-        buttonMapLarge.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Image imgUsed = ImageIO.read(getClass().getResource("/material/element/b_Yes.png"));
-                    buttonMapLarge.setIcon(new ImageIcon(imgUsed));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        this.add(buttonMapLarge);
+
 
         g.drawString("Player1 A & D",120,75 );
         g.drawString("Player2 < & >",120,135 );
@@ -260,6 +137,54 @@ public class StartMenu extends SnakeMenu {
     @Override
     public void onMouseClicked(MouseEvent e) {
 
+    }
+
+
+    private void setButton(JButton button, String name) {
+        button.setName(name);
+
+        setButtonEnabled(button, false);
+
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.addActionListener(e -> {
+            switch (e.getActionCommand()) {
+                case "click:enable":
+                    setButtonEnabled(button, true);
+                    break;
+                case "click:disable":
+                    if(button.getName().startsWith("map"))
+                        return;
+
+                    setButtonEnabled(button, false);
+                    break;
+            }
+        });
+    }
+
+    private void setButtonEnabled(JButton button, boolean enabled) {
+        if(enabled && enabledImage != null) {
+            button.setIcon(enabledImage);
+            button.setActionCommand("click:disable");
+
+            if(button.getName().equals("mapSmall")) {
+                setButtonEnabled(buttonMapMedium, false);
+                setButtonEnabled(buttonMapLarge, false);
+            }
+            if(button.getName().equals("mapMedium")) {
+                setButtonEnabled(buttonMapSmall, false);
+                setButtonEnabled(buttonMapLarge, false);
+            }
+            if(button.getName().equals("mapLarge")) {
+                setButtonEnabled(buttonMapMedium, false);
+                setButtonEnabled(buttonMapSmall, false);
+            }
+            return;
+        }
+        if(!enabled && disabledImage != null) {
+            button.setIcon(disabledImage);
+            button.setActionCommand("click:enable");
+        }
     }
 
 }
