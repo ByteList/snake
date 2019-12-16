@@ -28,6 +28,7 @@ public class StartMenu extends SnakeMenu {
     private final JButton buttonMapSmall;
     private final JButton buttonMapMedium;
     private final JButton buttonMapLarge;
+    private final JButton buttonStartGame;
 
     public StartMenu() {
         super("Snake - Hauptmenü");
@@ -51,6 +52,7 @@ public class StartMenu extends SnakeMenu {
         this.buttonMapSmall = new JButton();
         this.buttonMapMedium = new JButton();
         this.buttonMapLarge = new JButton();
+        this.buttonStartGame = new JButton();
 
 
         setButton(buttonPlayerOne, "playerOne");
@@ -60,6 +62,7 @@ public class StartMenu extends SnakeMenu {
         setButton(buttonMapSmall, "mapSmall");
         setButton(buttonMapMedium, "mapMedium");
         setButton(buttonMapLarge, "mapLarge");
+        setButton(buttonStartGame, "StartGame", false);
 
         this.add(buttonPlayerOne);
         this.add(buttonPlayerTwo);
@@ -81,6 +84,17 @@ public class StartMenu extends SnakeMenu {
         buttonSwitch.setContentAreaFilled(false);
         buttonSwitch.setBorderPainted(false);
         this.add(buttonSwitch);
+
+        try {
+            Image img = ImageIO.read(getClass().getResource("/material/element/b_Play2.png"));
+
+            buttonStartGame.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        buttonStartGame.setContentAreaFilled(false);
+        buttonStartGame.setBorderPainted(false);
+        this.add(buttonStartGame);
     }
 
     @Override
@@ -108,6 +122,8 @@ public class StartMenu extends SnakeMenu {
         buttonMapSmall.setBounds(50,650,45,45);
         buttonMapMedium.setBounds(250,650,45,45);
         buttonMapLarge.setBounds(450,650,45,45);
+
+        buttonStartGame.setBounds(450,150,80,80);
 
 
         g.drawString("Player1 A & D",120,75 );
@@ -140,10 +156,14 @@ public class StartMenu extends SnakeMenu {
     }
 
 
-    private void setButton(JButton button, String name) {
+    private void setButton(JButton button, String name){
+        setButton(button, name, true);
+    }
+    private void setButton(JButton button, String name, boolean iconButton) {
         button.setName(name);
 
-        setButtonEnabled(button, false);
+        if(iconButton)
+            setButtonEnabled(button, false);
 
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
