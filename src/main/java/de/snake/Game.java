@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import static de.snake.StaticConstants.*;
@@ -68,7 +69,32 @@ public class Game {
 
         this.players.add(player);
     }
+    public HashMap<int[], Direction[]> getStartPoints(){
+        HashMap<int[], Direction[]> startPoints = new HashMap<>();
+        int anzahl = this.players.size();
+        int width = this.snakeMap.getWidth();
+        int height = this.snakeMap.getHeight();
+        for(int i=0;i<anzahl;i++) {
 
+            int[] points = new int[2];
+
+                points[0] = ThreadLocalRandom.current().nextInt(100, (width-50));
+                points[1] = ThreadLocalRandom.current().nextInt(100,(height-50));
+
+            if(points[0]<100 && points[1]<100){
+          startPoints.put(points, new Direction[]{Direction.EAST, Direction.SOUTH});
+        }
+            if(points[0]>800 && points[1]>800){
+                startPoints.put(points, new Direction[]{Direction.WEST, Direction.NORTH});
+            }
+            if(points[0]<800 && points[1]<100){
+                startPoints.put(points, new Direction[]{Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH});
+            }
+
+        }
+
+        return startPoints;
+    }
     public int getId() {
         return id;
     }
