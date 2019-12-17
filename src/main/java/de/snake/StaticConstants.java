@@ -10,11 +10,9 @@ import java.util.HashMap;
  */
 public class StaticConstants {
 
-    public static final int GAME_TPS = 20;
+    public static final int GAME_TPS = 80;
 
-    public static final int NORMAL_SPEED = 3;
-
-    public static final int POWER_SPEED = 5;
+    public static final int NORMAL_SPEED = 1;
 
     public static final int WINDOW_HEIGHT = 750;
 

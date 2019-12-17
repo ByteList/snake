@@ -1,7 +1,9 @@
 package de.snake;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -14,11 +16,13 @@ public class Player {
 
     private final int id;
     private String displayName;
-    private int speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
+    private int speed = StaticConstants.NORMAL_SPEED, lineThickness = 7;
+    private Color lineColor = Color.RED;
     private int x, y;
     private final HashMap<String, Integer> linePoints = new HashMap<>();
     private Direction direction;
     private boolean alive = true;
+    private Image snakeHead;
 
     public Player(int id, String displayName, int x, int y, Direction direction) {
         this.id = id;
@@ -77,6 +81,13 @@ public class Player {
         return lineThickness;
     }
 
+    public Color getLineColor() {
+        return lineColor;
+    }
+
+    public void setLineColor(Color lineColor) {
+        this.lineColor = lineColor;
+    }
 
     public HashMap<String, Integer> getLinePoints() {
         return linePoints;
@@ -89,4 +100,13 @@ public class Player {
     public boolean isAlive() {
         return alive;
     }
+
+    public Image getSnakeHead() {
+        return snakeHead;
+    }
+
+    public void setSnakeHead(Image snakeHead) {
+        this.snakeHead = snakeHead;
+    }
+
 }

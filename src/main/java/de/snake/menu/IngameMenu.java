@@ -40,7 +40,7 @@ public class IngameMenu extends SnakeMenu {
 
 
         game.getPlayers().forEach(player -> {
-            g.setColor(Color.RED);
+            g.setColor(player.getLineColor());
             player.getLinePoints().forEach((point, thickness) -> {
 
                 g.fillOval(Integer.parseInt(point.split(";")[0]), Integer.parseInt(point.split(";")[1]),
@@ -48,8 +48,28 @@ public class IngameMenu extends SnakeMenu {
             });
 
             g.setColor(Color.GREEN);
-            g.fillOval(player.getX(), player.getY(), player.getLineThickness(), player.getLineThickness());
+            if(player.getSnakeHead() == null)
+                g.fillOval(player.getX(), player.getY(),
+                        player.getLineThickness(), player.getLineThickness());
+            else {
+                g.drawImage(player.getSnakeHead(), player.getX()-player.getLineThickness()/2,
+                        player.getY()-player.getLineThickness()/2,
+                        player.getLineThickness()*2, player.getLineThickness()*2, this);
+            }
         });
+
+        final int[] currentMessageLine = {0};
+        g.setColor(Color.RED);
+        game.getDeadPlayers().forEach(player -> {
+            currentMessageLine[0]++;
+
+            g.drawString(player.getDisplayName()+" is dead.", WINDOW_WIDTH - 200, 20*currentMessageLine[0]);
+        });
+
+        if(game.getWinner() != null) {
+            g.setColor(new Color(70, 255, 0));
+            g.drawString(game.getWinner().getDisplayName()+" has won.", WINDOW_WIDTH - 200, 20*currentMessageLine[0]);
+        }
     }
 
     @Override

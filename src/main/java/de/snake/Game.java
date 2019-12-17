@@ -13,11 +13,11 @@ public class Game {
     private Snake snake = Snake.getInstance();
 
     private final int id;
-    private final ArrayList<Player> players = new ArrayList<>();
+    private final ArrayList<Player> players = new ArrayList<>(), deadPlayers = new ArrayList<>();
     private final HashMap<String, Integer> linePoints = new HashMap<>();
     private Player winner;
     private Timer gameTimer, counterTimer;
-    private int playTime = 0, ticksPerSecond = 0, deadPlayers;
+    private int playTime = 0, ticksPerSecond = 0;
     private final SnakeMap snakeMap;
 
     public Game(int id, SnakeMap snakeMap) {
@@ -34,9 +34,15 @@ public class Game {
             public void run() {
                 ticksPerSecond++;
 
-                if(deadPlayers > players.size()-1) {
+                if(deadPlayers.size() == players.size()-1) {
                     gameTimer.cancel();
                     counterTimer.cancel();
+                    players.forEach(player -> {
+                        if(player.isAlive())
+                            winner = player;
+                    });
+
+
                 }
 
                 players.forEach(player -> {
@@ -46,7 +52,8 @@ public class Game {
 
                         return;
                     }
-                    deadPlayers++;
+                    if(!deadPlayers.contains(player))
+                        deadPlayers.add(player);
                 });
 
                 snake.getCurrentMenu().repaint();
@@ -75,6 +82,10 @@ public class Game {
 
     public Collection<Player> getPlayers() {
         return Collections.unmodifiableCollection(this.players);
+    }
+
+    public Collection<Player> getDeadPlayers() {
+        return Collections.unmodifiableCollection(this.deadPlayers);
     }
 
     public HashMap<String, Integer> getLinePoints() {
