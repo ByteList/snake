@@ -35,8 +35,8 @@ public class IngameMenu extends SnakeMenu {
         g.fillRect(game.getSnakeMap().getWidth(), 0, 1, game.getSnakeMap().getHeight());
 
 
-        g.drawString("Spielzeit: "+game.getPlayTime(), 50, 50);
-        g.drawString("TPS: "+game.getTicksPerSecond(), 200, 50);
+        g.drawString("Spielzeit: "+game.getPlayTime(), WINDOW_WIDTH - 300, 15);
+        g.drawString("TPS: "+game.getTicksPerSecond(), WINDOW_WIDTH - 200, 15);
 
 
         game.getPlayers().forEach(player -> {
@@ -58,17 +58,18 @@ public class IngameMenu extends SnakeMenu {
             }
         });
 
-        final int[] currentMessageLine = {0};
+        final int[] currentMessageLine = {1};
         g.setColor(Color.RED);
         game.getDeadPlayers().forEach(player -> {
             currentMessageLine[0]++;
 
-            g.drawString(player.getDisplayName()+" is dead.", WINDOW_WIDTH - 200, 20*currentMessageLine[0]);
+            g.drawString(player.getDisplayName()+" is dead.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
         });
 
         if(game.getWinner() != null) {
-            g.setColor(new Color(70, 255, 0));
-            g.drawString(game.getWinner().getDisplayName()+" has won.", WINDOW_WIDTH - 200, 20*currentMessageLine[0]);
+            currentMessageLine[0]++;
+            g.setColor(new Color(54, 184, 0));
+            g.drawString(game.getWinner().getDisplayName()+" has won.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
         }
     }
 
