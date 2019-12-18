@@ -90,7 +90,7 @@ public class Player {
     }
 
     public HashMap<String, Integer> getLinePoints() {
-        return linePoints;
+        return new HashMap<>(linePoints);
     }
 
     public Direction getDirection() {

@@ -37,7 +37,6 @@ public class IngameMenu extends SnakeMenu {
     public void paint(Graphics g) {
         super.paint(g);
 
-
         g.fillRect(WINDOW_WIDTH - 350, 0, 1, WINDOW_HEIGHT);
 
         g.drawImage(game.getSnakeMap().getBackgroundImage(), 0, 0, this);
