@@ -20,10 +20,6 @@ public class SnakeLauncher {
         EventQueue.invokeLater(()-> {
             Snake snake = new Snake();
             snake.loadSnakeMenu(new StartMenu());
-
-            // ============== DEBUG ==============
-//        snake.startGame(StaticConstants.MAPS.get("small"));
-//        snake.debug();
         });
     }
 }

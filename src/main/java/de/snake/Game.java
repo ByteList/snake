@@ -42,8 +42,7 @@ public class Game {
                         if(player.isAlive())
                             winner = player;
                     });
-
-
+                    ticksPerSecond = 0;
                 }
 
                 players.forEach(player -> {

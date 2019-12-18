@@ -20,13 +20,24 @@ public class IngameMenu extends SnakeMenu {
     private final Snake snake = Snake.getInstance();
     private final Game game = snake.getCurrentGame();
 
+    private final JButton backToStartButton = new JButton("Zurück ins Startmenü");
+
     public IngameMenu() {
         super("Snake - Im Spiel");
+
+        backToStartButton.addActionListener(e -> {
+            snake.endGame();
+        });
+        backToStartButton.setVisible(false);
+
+        this.add(backToStartButton);
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
+
         g.fillRect(WINDOW_WIDTH - 350, 0, 1, WINDOW_HEIGHT);
 
         g.drawImage(game.getSnakeMap().getBackgroundImage(), 0, 0, this);
@@ -70,6 +81,9 @@ public class IngameMenu extends SnakeMenu {
             currentMessageLine[0]++;
             g.setColor(new Color(54, 184, 0));
             g.drawString(game.getWinner().getDisplayName()+" has won.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
+
+            backToStartButton.setBounds(WINDOW_WIDTH-300, WINDOW_HEIGHT-50, 180, 28);
+            backToStartButton.setVisible(true);
         }
     }
 

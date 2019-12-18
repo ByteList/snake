@@ -31,7 +31,7 @@ public class StartMenu extends SnakeMenu {
     private final JButton buttonPlayerTwo;
     private final JButton buttonPlayerThree;
     private final JButton buttonPlayerFour;
-    private final JButton buttonSwitch;
+//    private final JButton buttonSwitch;
     private final JButton buttonMapSmall;
     private final JButton buttonMapMedium;
     private final JButton buttonMapLarge;
@@ -55,7 +55,7 @@ public class StartMenu extends SnakeMenu {
         this.buttonPlayerTwo = new JButton();
         this.buttonPlayerThree = new JButton();
         this.buttonPlayerFour = new JButton();
-        this.buttonSwitch = new JButton();
+//        this.buttonSwitch = new JButton();
         this.buttonMapSmall = new JButton();
         this.buttonMapMedium = new JButton();
         this.buttonMapLarge = new JButton();
@@ -83,16 +83,16 @@ public class StartMenu extends SnakeMenu {
 
         setButtonEnabled(buttonMapMedium, true);
 
-        try {
-            Image img = ImageIO.read(getClass().getResource("/material/items/test.gif"));
-
-            buttonSwitch.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonSwitch.setContentAreaFilled(false);
-        buttonSwitch.setBorderPainted(false);
-        this.add(buttonSwitch);
+//        try {
+//            Image img = ImageIO.read(getClass().getResource("/material/items/test.gif"));
+//
+//            buttonSwitch.setIcon(new ImageIcon(img));
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//        }
+//        buttonSwitch.setContentAreaFilled(false);
+//        buttonSwitch.setBorderPainted(false);
+//        this.add(buttonSwitch);
 
         try {
             Image img = ImageIO.read(getClass().getResource("/material/element/b_Play2.png"));
@@ -126,7 +126,7 @@ public class StartMenu extends SnakeMenu {
         buttonPlayerFour.setBounds(50,230,50,50);
 
 
-        buttonSwitch.setBounds(50,500,250,80);
+//        buttonSwitch.setBounds(50,500,250,80);
 
         buttonMapSmall.setBounds(50,650,45,45);
         buttonMapMedium.setBounds(250,650,45,45);
