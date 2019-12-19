@@ -133,16 +133,31 @@ public class StartMenu extends SnakeMenu {
         buttonMapLarge.setBounds(450,650,45,45);
 
         buttonStartGame.setBounds(450,150,80,80);
-
-
-        g.drawString("Player1 A & D",120,75 );
-        g.drawString("Player2 < & >",120,135 );
-        g.drawString("Player3 I & P",120,195 );
-        g.drawString("Player4 B & M",120,255 );
+        Font myFont = new Font("Serif", Font.BOLD, 20);
+        g.setColor(snake.getPlayerOne().getLineColor());
+        g.setFont(myFont);
+        g.drawString("Player1 A & D",120,80 );
+        g.setColor(snake.getPlayerTwo().getLineColor());
+        g.drawString("Player2 < & >",120,140 );
+        g.setColor(snake.getPlayerThree().getLineColor());
+        g.drawString("Player3 I & P",120,200 );
+        g.setColor(snake.getPlayerFour().getLineColor());
+        g.drawString("Player4 B & M",120,260 );
         //g.drawString("Items",120,525 );
         g.drawString("Map Small",130,675 );
         g.drawString("Map Medium",330,675 );
         g.drawString("Map Large",530,675 );
+
+
+        g.drawString("Winners List:", WINDOW_WIDTH - 300, 20);
+
+        final int[] currentMessageLine = {2};
+        snake.getGames().forEach(game -> {
+            currentMessageLine[0]++;
+
+            g.drawString("Spiel " + (game.getId() + 1) +": "+ game.getWinner().getDisplayName(), WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
+        });
+
 
 
         Toolkit.getDefaultToolkit().sync();
