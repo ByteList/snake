@@ -1,6 +1,7 @@
 package de.snake.bootstrap;
 
 import de.snake.Snake;
+import de.snake.StaticConstants;
 import de.snake.menu.StartMenu;
 
 import javax.swing.*;
@@ -19,10 +20,6 @@ public class SnakeLauncher {
         EventQueue.invokeLater(()-> {
             Snake snake = new Snake();
             snake.loadSnakeMenu(new StartMenu());
-
-            // ============== DEBUG ==============
-//        snake.startGame();
-//        snake.debug();
         });
     }
 }

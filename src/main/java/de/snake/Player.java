@@ -1,6 +1,9 @@
 package de.snake;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -9,31 +12,49 @@ import java.util.ArrayList;
  */
 public class Player {
 
+    private final Snake snake = Snake.getInstance();
+
     private final int id;
     private String displayName;
-    private double x, y, speed = StaticConstants.NORMAL_SPEED, lineThickness = 3;
-    private final ArrayList<double[]> linePoints = new ArrayList<>();
-    private final int leftKey, rightKey;
+    private int speed = StaticConstants.NORMAL_SPEED, lineThickness = 7;
+    private Color lineColor = Color.RED;
+    private int x, y;
+    private final HashMap<String, Integer> linePoints = new HashMap<>();
     private Direction direction;
-    private boolean directionLocked = false;
+    private boolean alive = true;
+    private Image snakeHead;
 
-    public Player(int id, String displayName, double x, double y, Direction direction, int leftKey, int rightKey) {
+    public Player(int id, String displayName, int x, int y, Direction direction) {
         this.id = id;
         this.displayName = displayName;
-        this.x = x;
-        this.y = y;
-        this.leftKey = leftKey;
-        this.rightKey = rightKey;
-        this.direction = direction;
+
+        this.move(direction);
+        this.setXY(x, y);
     }
 
     public void move(Direction direction) {
         this.direction = direction;
+        System.out.println(direction);
     }
 
-    public void setXY(double x, double y) {
+    public void setXY(int x, int y) {
+        String point = x+";"+y;
+
+        System.out.println(point);
+
         this.x = x;
         this.y = y;
+
+        if(snake.getCurrentGame() != null && (snake.getCurrentGame().getLinePoints().containsKey(point) ||
+                x > snake.getCurrentGame().getSnakeMap().getWidth() ||
+                y > snake.getCurrentGame().getSnakeMap().getHeight() ||
+                x < 0 || y < 0)) {
+            alive = false;
+            return;
+        }
+        this.linePoints.put(point, this.lineThickness);
+        if(snake.getCurrentGame() != null)
+            snake.getCurrentGame().addLinePoint(point, this.lineThickness);
     }
 
     public int getId() {
@@ -44,44 +65,48 @@ public class Player {
         return displayName;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public double getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public double getLineThickness() {
+    public int getLineThickness() {
         return lineThickness;
     }
 
-
-    public ArrayList<double[]> getLinePoints() {
-        return linePoints;
+    public Color getLineColor() {
+        return lineColor;
     }
 
-    public int getRightKey() {
-        return rightKey;
+    public void setLineColor(Color lineColor) {
+        this.lineColor = lineColor;
     }
 
-    public int getLeftKey() {
-        return leftKey;
+    public HashMap<String, Integer> getLinePoints() {
+        return new HashMap<>(linePoints);
     }
 
     public Direction getDirection() {
         return direction;
     }
 
-    public boolean isDirectionLocked() {
-        return directionLocked;
+    public boolean isAlive() {
+        return alive;
     }
 
-    public void setDirectionLocked(boolean directionLocked) {
-        this.directionLocked = directionLocked;
+    public Image getSnakeHead() {
+        return snakeHead;
     }
+
+    public void setSnakeHead(Image snakeHead) {
+        this.snakeHead = snakeHead;
+    }
+
 }
