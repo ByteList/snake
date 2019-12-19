@@ -21,6 +21,7 @@ public class IngameMenu extends SnakeMenu {
     private final Game game = snake.getCurrentGame();
 
     private final JButton backToStartButton = new JButton("Zurück ins Startmenü");
+    private final JButton endButton = new JButton("Beenden");
 
     public IngameMenu() {
         super("Snake - Im Spiel");
@@ -30,7 +31,13 @@ public class IngameMenu extends SnakeMenu {
         });
         backToStartButton.setVisible(false);
 
+        endButton.addActionListener(e -> {
+            snake.loadSnakeMenu(new EndMenu());
+        });
+        endButton.setVisible(false);
+
         this.add(backToStartButton);
+        this.add(endButton);
     }
 
     @Override
@@ -81,8 +88,10 @@ public class IngameMenu extends SnakeMenu {
             g.setColor(new Color(54, 184, 0));
             g.drawString(game.getWinner().getDisplayName()+" has won.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
 
-            backToStartButton.setBounds(WINDOW_WIDTH-300, WINDOW_HEIGHT-50, 180, 28);
+            backToStartButton.setBounds(WINDOW_WIDTH-300, WINDOW_HEIGHT-100, 180, 28);
             backToStartButton.setVisible(true);
+            endButton.setBounds(WINDOW_WIDTH-300, WINDOW_HEIGHT-70, 180, 28);
+            endButton.setVisible(true);
         }
     }
 
