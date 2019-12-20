@@ -83,33 +83,51 @@ public class Game {
 
         this.players.add(player);
     }
-    public HashMap<int[], Direction[]> getStartPoints(){
+    public HashMap<int[], Direction[]> getStartPoints() {
         HashMap<int[], Direction[]> startPoints = new HashMap<>();
         int count = this.players.size();
         int width = this.snakeMap.getWidth();
         int height = this.snakeMap.getHeight();
-
         for (int i = 0; i < count; i++) {
 
             int[] points = new int[2];
 
-            points[0] = ThreadLocalRandom.current().nextInt(100, (width - 50));
-            points[1] = ThreadLocalRandom.current().nextInt(100, (height - 50));
+            points[0] = ThreadLocalRandom.current().nextInt(50, (width - 50));
+            points[1] = ThreadLocalRandom.current().nextInt(50, (height - 50));
 
-            if (points[0] < 100 && points[1] < 100) {
-                startPoints.put(points, new Direction[]{Direction.EAST, Direction.SOUTH});
-            }
-            if (points[0] > 800 && points[1] > 800) {
-                startPoints.put(points, new Direction[]{Direction.WEST, Direction.NORTH});
-            }
-            if (points[0] < 800 && points[1] < 100) {
+            if (points[0] < 80) {
+                if (points[1] < 80) {
+                    startPoints.put(points, new Direction[]{Direction.EAST, Direction.SOUTH});
+                } else if (points[1] > (height - 80)) {
+                    startPoints.put(points, new Direction[]{Direction.EAST, Direction.NORTH});
+                } else {
+                    startPoints.put(points, new Direction[]{Direction.EAST});
+                }
+            } else if (points[0] > 80 && points[0] < (width - 80)) {
+                if (points[1] < 80) {
+                    startPoints.put(points, new Direction[]{Direction.SOUTH});
+                } else if (points[1] > height - 80) {
+                    startPoints.put(points, new Direction[]{Direction.NORTH});
+                } else {
+                    startPoints.put(points, new Direction[]{Direction.WEST, Direction.NORTH, Direction.EAST, Direction.SOUTH});
+                }
+            } else if (points[0] > (width - 80)) {
+                if (points[1] < 80) {
+                    startPoints.put(points, new Direction[]{Direction.WEST, Direction.SOUTH});
+                } else if (points[1] > (height - 80)) {
+                    startPoints.put(points, new Direction[]{Direction.WEST, Direction.NORTH});
+                } else {
+                    startPoints.put(points, new Direction[]{Direction.WEST});
+                }
+            } else {
                 startPoints.put(points, new Direction[]{Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH});
             }
 
         }
-
+        System.out.println("Anzahl:"+count);
         return startPoints;
     }
+
     public int getId() {
         return id;
     }
