@@ -65,14 +65,9 @@ public class Snake {
         currentMenu = snakeMenu;
     }
 
-    public void debug() {
-        this.currentGame.registerPlayer(this.playerOne);
-        this.currentGame.registerPlayer(this.playerTwo);
-    }
-
-    public boolean startGame(Game game) {
+    public void startGame(Game game) {
         if(this.currentGame != null)
-            return false;
+            return;
 
         this.games.add(game);
 
@@ -80,8 +75,14 @@ public class Snake {
         this.currentGame = game;
 
         this.loadSnakeMenu(new IngameMenu());
+        AtomicInteger count = new AtomicInteger();
+        Player[] players = game.getPlayers().toArray(new Player[0]);
+        game.getStartPoints().forEach((points, direction)-> {
+            players[count.get()].setXY(points[0], points[1]);
+            players[count.getAndIncrement()].setDirection(
+                    direction[ThreadLocalRandom.current().nextInt(direction.length)]);
+        });
         game.start();
-        return true;
     }
 
     public void endGame() {
@@ -113,6 +114,15 @@ public class Snake {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean exit() {
+        if(JOptionPane.showConfirmDialog(null, "Möchtest du Snake wirklich beenden?", "Snake beenden?",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+            return true;
+        }
+        return false;
     }
 
     public Player getPlayerOne() {
