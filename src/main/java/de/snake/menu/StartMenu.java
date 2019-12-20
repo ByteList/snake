@@ -1,9 +1,6 @@
 package de.snake.menu;
 
-import de.snake.Game;
-import de.snake.Snake;
-import de.snake.SnakeMap;
-import de.snake.StaticConstants;
+import de.snake.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,6 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static de.snake.StaticConstants.*;
 
@@ -119,15 +117,10 @@ public class StartMenu extends SnakeMenu {
         g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
         g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);
 
-
         buttonPlayerOne.setBounds(50,50,50,50);
         buttonPlayerTwo.setBounds(50,110,50,50);
         buttonPlayerThree.setBounds(50,170,50,50);
         buttonPlayerFour.setBounds(50,230,50,50);
-
-
-//        buttonSwitch.setBounds(50,500,250,80);
-
         buttonMapSmall.setBounds(50,650,45,45);
         buttonMapMedium.setBounds(250,650,45,45);
         buttonMapLarge.setBounds(450,650,45,45);
@@ -148,15 +141,42 @@ public class StartMenu extends SnakeMenu {
         g.drawString("Map Medium",330,675 );
         g.drawString("Map Large",530,675 );
 
+        g.drawString("current Gamewinner is:", WINDOW_WIDTH - 300, 60);
+        g.drawString("Winners List:", WINDOW_WIDTH - 300, 300);
+        g.drawRect(WINDOW_WIDTH - 300,150,80,50);
+        g.drawRect(WINDOW_WIDTH - 220,120,80,80);
+        g.drawRect(WINDOW_WIDTH - 140,170,80,30);
 
-        g.drawString("Winners List:", WINDOW_WIDTH - 300, 20);
+//        snake.getGames().forEach(game -> {
+//            if(game.getWinner().getDisplayName() != null) {
+//                game.getWinner().getDisplayName();
+//                g.drawString(game.getWinner().getDisplayName(), WINDOW_WIDTH - 95, 60);
+//            }
+//            return;
+//        });
 
-        final int[] currentMessageLine = {2};
+        final int[] currentMessageLine = {16};
         snake.getGames().forEach(game -> {
             currentMessageLine[0]++;
 
             g.drawString("Spiel " + (game.getId() + 1) +": "+ game.getWinner().getDisplayName(), WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
         });
+        if(snake.getGames().size() > 0) {
+            Game game = snake.getGames().get(snake.getGames().size() - 1);
+            Player[] luckyLoosers = game.getDeadPlayers().toArray(new Player[0]);
+            if (luckyLoosers.length == 3 || luckyLoosers.length == 2) {
+                System.out.println("LOOSERS: " + luckyLoosers[luckyLoosers.length - 1].getDisplayName());
+                System.out.println("LOOSERS: " + luckyLoosers[luckyLoosers.length - 2].getDisplayName());
+                g.drawString(luckyLoosers[luckyLoosers.length - 1].getDisplayName(),WINDOW_WIDTH - 300,140 );
+                g.drawString(luckyLoosers[luckyLoosers.length - 2].getDisplayName(),WINDOW_WIDTH - 130,160 );
+            } else {
+                System.out.println("JUSTONELOOSER: "+luckyLoosers[luckyLoosers.length - 1].getDisplayName());
+                g.drawString(luckyLoosers[luckyLoosers.length - 1].getDisplayName(),WINDOW_WIDTH - 300,140 );
+            }
+
+            System.out.println("WINNER: " + game.getWinner().getDisplayName());
+            g.drawString(game.getWinner().getDisplayName(),WINDOW_WIDTH - 220,110 );
+        }
 
 
 
