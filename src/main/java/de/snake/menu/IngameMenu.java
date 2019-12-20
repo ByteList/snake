@@ -107,31 +107,31 @@ public class IngameMenu extends SnakeMenu {
 
         switch (e.getKeyCode()) {
             case StaticConstants.PLAYER_ONE_KEY_LEFT:
-                playerOne.move(playerOne.getDirection().getLeftDirection());
+                playerOne.setDirection(playerOne.getDirection().getLeftDirection());
                 break;
             case StaticConstants.PLAYER_ONE_KEY_RIGHT:
-                playerOne.move(playerOne.getDirection().getRightDirection());
+                playerOne.setDirection(playerOne.getDirection().getRightDirection());
                 break;
 
             case StaticConstants.PLAYER_TWO_KEY_LEFT:
-                playerTwo.move(playerTwo.getDirection().getLeftDirection());
+                playerTwo.setDirection(playerTwo.getDirection().getLeftDirection());
                 break;
             case StaticConstants.PLAYER_TWO_KEY_RIGHT:
-                playerTwo.move(playerTwo.getDirection().getRightDirection());
+                playerTwo.setDirection(playerTwo.getDirection().getRightDirection());
                 break;
 
             case StaticConstants.PLAYER_THREE_KEY_LEFT:
-                playerThree.move(playerThree.getDirection().getLeftDirection());
+                playerThree.setDirection(playerThree.getDirection().getLeftDirection());
                 break;
             case StaticConstants.PLAYER_THREE_KEY_RIGHT:
-                playerThree.move(playerThree.getDirection().getRightDirection());
+                playerThree.setDirection(playerThree.getDirection().getRightDirection());
                 break;
 
             case StaticConstants.PLAYER_FOUR_KEY_LEFT:
-                playerFour.move(playerFour.getDirection().getLeftDirection());
+                playerFour.setDirection(playerFour.getDirection().getLeftDirection());
                 break;
             case StaticConstants.PLAYER_FOUR_KEY_RIGHT:
-                playerFour.move(playerFour.getDirection().getRightDirection());
+                playerFour.setDirection(playerFour.getDirection().getRightDirection());
                 break;
         }
     }

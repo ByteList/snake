@@ -1,9 +1,7 @@
 package de.snake;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -28,11 +26,11 @@ public class Player {
         this.id = id;
         this.displayName = displayName;
 
-        this.move(direction);
+        this.setDirection(direction);
         this.setXY(x, y);
     }
 
-    public void move(Direction direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
         System.out.println(direction);
     }
