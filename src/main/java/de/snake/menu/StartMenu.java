@@ -186,7 +186,10 @@ public class StartMenu extends SnakeMenu {
 
     @Override
     public void onKeyPressed(KeyEvent e) {
-
+        System.out.println("Key: "+e.getKeyCode());
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            snake.exit();
+        }
     }
 
     @Override

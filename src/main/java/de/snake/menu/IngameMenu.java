@@ -32,7 +32,7 @@ public class IngameMenu extends SnakeMenu {
         backToStartButton.setVisible(false);
 
         endButton.addActionListener(e -> {
-            snake.loadSnakeMenu(new EndMenu());
+            snake.exit();
         });
         endButton.setVisible(false);
 
@@ -97,6 +97,13 @@ public class IngameMenu extends SnakeMenu {
 
     @Override
     public void onKeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            game.pause();
+            if(!snake.exit())
+                game.start();
+            return;
+        }
+
         Direction direction = null;
         Player playerOne = snake.getPlayerOne(),
         playerTwo = snake.getPlayerTwo(),

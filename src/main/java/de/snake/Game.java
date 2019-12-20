@@ -25,19 +25,11 @@ public class Game {
     public Game(int id, SnakeMap snakeMap) {
         this.id = id;
         this.snakeMap = snakeMap;
-
-        this.gameTimer = new Timer();
-        this.counterTimer = new Timer();
     }
 
     public void start() {
-        AtomicInteger count = new AtomicInteger();
-        this.getStartPoints().forEach((points, direction)-> {
-            this.players.get(count.get()).setXY(points[0], points[1]);
-            this.players.get(count.getAndIncrement()).setDirection(
-                    direction[ThreadLocalRandom.current().nextInt(direction.length)]);
-        });
-
+        this.gameTimer = new Timer();
+        this.counterTimer = new Timer();
         this.gameTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -75,6 +67,11 @@ public class Game {
                 playTime++;
             }
         }, 0, 1000);
+    }
+
+    public void pause() {
+        this.gameTimer.cancel();
+        this.counterTimer.cancel();
     }
 
     public void registerPlayer(Player player) {
