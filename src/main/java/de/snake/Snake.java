@@ -11,9 +11,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import static de.snake.StaticConstants.PLAYER_ONE_KEY_LEFT;
-import static de.snake.StaticConstants.PLAYER_ONE_KEY_RIGHT;
+import java.util.Collection;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Niklas Emmrich on 29.10.2019.
@@ -75,6 +75,7 @@ public class Snake {
             return false;
 
         this.games.add(game);
+
 
         this.currentGame = game;
 
