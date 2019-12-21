@@ -104,7 +104,7 @@ public class Snake {
         this.playerOne.setLineColor(new Color(255, 50, 44));
         this.playerTwo.setLineColor(new Color(50, 255, 44));
         this.playerThree.setLineColor(new Color(251, 255, 61));
-        this.playerFour.setLineColor(new Color(44, 50, 255));
+        this.playerFour.setLineColor(new Color(44, 112, 255));
 
         try {
             this.playerOne.setSnakeHead(ImageIO.read(getClass().getResource("/material/snake/snakegifROT.gif")));

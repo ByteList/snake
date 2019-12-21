@@ -24,6 +24,7 @@ public class StartMenu extends SnakeMenu {
     private int init = 0;
 
     private ImageIcon enabledImage, disabledImage;
+    private Image backgroundImage;
 
     private final JButton buttonPlayerOne;
     private final JButton buttonPlayerTwo;
@@ -45,6 +46,11 @@ public class StartMenu extends SnakeMenu {
         }
         try {
             this.disabledImage = new ImageIcon(ImageIO.read(getClass().getResource("/material/element/b_No.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.backgroundImage = ImageIO.read(getClass().getResource("/material/background/menu.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,11 +119,8 @@ public class StartMenu extends SnakeMenu {
     }
 
     private void doDrawing(Graphics g) {
-//        try {
-//            g.drawImage(ImageIO.read(getClass().getResource("/material/background/menu.jpg")), 0, 0, this);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        g.drawImage(this.backgroundImage, 0, 0, this);
+        g.setFont(new Font("Serif", Font.BOLD, 20));
 
         g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
         g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);
@@ -126,62 +129,79 @@ public class StartMenu extends SnakeMenu {
         buttonPlayerTwo.setBounds(50,110,50,50);
         buttonPlayerThree.setBounds(50,170,50,50);
         buttonPlayerFour.setBounds(50,230,50,50);
-        buttonMapSmall.setBounds(50,650,45,45);
-        buttonMapMedium.setBounds(250,650,45,45);
-        buttonMapLarge.setBounds(450,650,45,45);
 
-        buttonStartGame.setBounds(450,150,80,80);
-        Font myFont = new Font("Serif", Font.BOLD, 20);
+        buttonStartGame.setBounds(450,215,80,80);
+
+        buttonMapSmall.setBounds(50,450,45,45);
+        buttonMapMedium.setBounds(250,450,45,45);
+        buttonMapLarge.setBounds(470,450,45,45);
+
+
         g.setColor(snake.getPlayerOne().getLineColor());
-        g.setFont(myFont);
-        g.drawString("Player1 A & D",120,80 );
-        g.setColor(snake.getPlayerTwo().getLineColor());
-        g.drawString("Player2 < & >",120,140 );
-        g.setColor(snake.getPlayerThree().getLineColor());
-        g.drawString("Player3 I & P",120,200 );
-        g.setColor(snake.getPlayerFour().getLineColor());
-        g.drawString("Player4 B & M",120,260 );
-        //g.drawString("Items",120,525 );
-        g.drawString("Map Small",130,675 );
-        g.drawString("Map Medium",330,675 );
-        g.drawString("Map Large",530,675 );
+        g.drawString(snake.getPlayerOne().getDisplayName(),120,80 );
+        g.drawString("A & D",280,80 );
 
-        g.drawString("current Gamewinner is:", WINDOW_WIDTH - 300, 60);
-        g.drawString("Winners List:", WINDOW_WIDTH - 300, 300);
+        g.setColor(snake.getPlayerTwo().getLineColor());
+        g.drawString(snake.getPlayerTwo().getDisplayName(),120,140 );
+        g.drawString("< & >",280,140 );
+
+        g.setColor(snake.getPlayerThree().getLineColor());
+        g.drawString(snake.getPlayerThree().getDisplayName(),120,200 );
+        g.drawString("I & P",280,200 );
+
+        g.setColor(snake.getPlayerFour().getLineColor());
+        g.drawString(snake.getPlayerFour().getDisplayName(),120,260 );
+        g.drawString("B & M",280,260 );
+
+        g.setColor(Color.ORANGE);
+
+        g.drawString("Spielen", 520, 260);
+
+        //g.drawString("Items",120,525 );
+        g.drawString("Map Small",130,475 );
+        g.drawString("Map Medium",330,475 );
+        g.drawString("Map Large",530,475 );
+
+        g.drawString("Letzte Runde: ", WINDOW_WIDTH - 300, 60);
         g.drawRect(WINDOW_WIDTH - 300,150,80,50);
         g.drawRect(WINDOW_WIDTH - 220,120,80,80);
         g.drawRect(WINDOW_WIDTH - 140,170,80,30);
 
-//        snake.getGames().forEach(game -> {
-//            if(game.getWinner().getDisplayName() != null) {
-//                game.getWinner().getDisplayName();
-//                g.drawString(game.getWinner().getDisplayName(), WINDOW_WIDTH - 95, 60);
-//            }
-//            return;
-//        });
-
-        final int[] currentMessageLine = {16};
-        snake.getGames().forEach(game -> {
-            currentMessageLine[0]++;
-
-            g.drawString("Spiel " + (game.getId() + 1) +": "+ game.getWinner().getDisplayName(), WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
-        });
         if(snake.getGames().size() > 0) {
             Game game = snake.getGames().get(snake.getGames().size() - 1);
             Player[] luckyLoosers = game.getDeadPlayers().toArray(new Player[0]);
             if (luckyLoosers.length == 3 || luckyLoosers.length == 2) {
                 System.out.println("LOOSERS: " + luckyLoosers[luckyLoosers.length - 1].getDisplayName());
                 System.out.println("LOOSERS: " + luckyLoosers[luckyLoosers.length - 2].getDisplayName());
+                g.setColor(luckyLoosers[luckyLoosers.length - 1].getLineColor());
                 g.drawString(luckyLoosers[luckyLoosers.length - 1].getDisplayName(),WINDOW_WIDTH - 300,140 );
+
+                g.setColor(luckyLoosers[luckyLoosers.length - 2].getLineColor());
                 g.drawString(luckyLoosers[luckyLoosers.length - 2].getDisplayName(),WINDOW_WIDTH - 130,160 );
             } else {
                 System.out.println("JUSTONELOOSER: "+luckyLoosers[luckyLoosers.length - 1].getDisplayName());
+                g.setColor(luckyLoosers[luckyLoosers.length - 1].getLineColor());
                 g.drawString(luckyLoosers[luckyLoosers.length - 1].getDisplayName(),WINDOW_WIDTH - 300,140 );
             }
 
             System.out.println("WINNER: " + game.getWinner().getDisplayName());
+            g.setColor(game.getWinner().getLineColor());
             g.drawString(game.getWinner().getDisplayName(),WINDOW_WIDTH - 220,110 );
         }
+
+        g.setColor(Color.ORANGE);
+        g.drawString("Gwinner der letzten Runden:", WINDOW_WIDTH - 300, 300);
+        final int[] currentMessageLine = {16};
+        snake.getGames().forEach(game -> {
+            currentMessageLine[0]++;
+
+            g.setColor(Color.ORANGE);
+            g.drawString("Runde " + (game.getId() + 1) +": ", WINDOW_WIDTH - 300, 22*currentMessageLine[0]);
+            g.setColor(game.getWinner().getLineColor());
+            g.drawString(game.getWinner().getDisplayName(), WINDOW_WIDTH - 190, 22*currentMessageLine[0]);
+
+        });
+
 
 
 

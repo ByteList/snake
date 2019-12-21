@@ -89,13 +89,13 @@ public class IngameMenu extends SnakeMenu {
         game.getDeadPlayers().forEach(player -> {
             currentMessageLine[0]++;
 
-            g.drawString(player.getDisplayName()+" is dead.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
+            g.drawString(player.getDisplayName()+" ist gestorben.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
         });
 
         if(game.getWinner() != null) {
             currentMessageLine[0]++;
             g.setColor(new Color(54, 184, 0));
-            g.drawString(game.getWinner().getDisplayName()+" has won.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
+            g.drawString(game.getWinner().getDisplayName()+" hat gewonnen.", WINDOW_WIDTH - 300, 20*currentMessageLine[0]);
 
             backToStartButton.setBounds(WINDOW_WIDTH-300, WINDOW_HEIGHT-100, 180, 28);
             backToStartButton.setVisible(true);
