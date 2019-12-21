@@ -145,7 +145,7 @@ public class StartMenu extends SnakeMenu {
         buttonPlayerThree.setBounds(50,170,50,50);
         buttonPlayerFour.setBounds(50,230,50,50);
 
-        buttonStartGame.setBounds(450,215,80,80);
+        buttonStartGame.setBounds(460,215,80,80);
 
         buttonMapSmall.setBounds(50,450,45,45);
         buttonMapMedium.setBounds(250,450,45,45);
@@ -170,7 +170,7 @@ public class StartMenu extends SnakeMenu {
 
         g.setColor(Color.ORANGE);
 
-        g.drawString("Spielen", 520, 260);
+        g.drawString("Spielen", 530, 260);
 
         //g.drawString("Items",120,525 );
         g.drawString("kleine Karte",115,475 );

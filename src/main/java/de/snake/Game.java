@@ -56,7 +56,7 @@ public class Game {
 
                         return;
                     }
-                    if(!deadPlayers.contains(player)) {
+                    if(!deadPlayers.contains(player) && deadPlayers.size() < players.size()-1) {
                         deadPlayers.add(player);
                         System.out.println("Dead: "+player.getDisplayName());
                     }
