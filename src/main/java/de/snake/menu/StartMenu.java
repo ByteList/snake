@@ -173,8 +173,8 @@ public class StartMenu extends SnakeMenu {
         g.drawString("Spielen", 520, 260);
 
         //g.drawString("Items",120,525 );
-        g.drawString("kleine Karte",130,475 );
-        g.drawString("normale Karte",330,475 );
+        g.drawString("kleine Karte",115,475 );
+        g.drawString("normale Karte",315,475 );
         g.drawString("große Karte",530,475 );
 
         g.drawString("Letzte Runde: ", WINDOW_WIDTH - 300, 60);
@@ -205,7 +205,7 @@ public class StartMenu extends SnakeMenu {
         }
 
         g.setColor(Color.ORANGE);
-        g.drawString("Gwinner der letzten Runden:", WINDOW_WIDTH - 300, 300);
+        g.drawString("Gewinner der letzten Runden:", WINDOW_WIDTH - 300, 300);
         final int[] currentMessageLine = {16};
         snake.getGames().forEach(game -> {
             currentMessageLine[0]++;
