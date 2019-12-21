@@ -235,6 +235,10 @@ public class StartMenu extends SnakeMenu {
         else setButtonEnabled(this.buttonPlayerFour, false);
 
 
+        g.setColor(Color.LIGHT_GRAY);
+        g.setFont(new Font("Serif", Font.BOLD, 14));
+        g.drawString("Entwickelt von Niklas Emmrich, Patrick Bonn and David Schulz, 12.2019, LF6, FIA18, BBS Gutjahr", 10, WINDOW_HEIGHT-25);
+
         Toolkit.getDefaultToolkit().sync();
 
     }
