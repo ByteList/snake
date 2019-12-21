@@ -158,9 +158,9 @@ public class StartMenu extends SnakeMenu {
         g.drawString("Spielen", 520, 260);
 
         //g.drawString("Items",120,525 );
-        g.drawString("Map Small",130,475 );
-        g.drawString("Map Medium",330,475 );
-        g.drawString("Map Large",530,475 );
+        g.drawString("kleine Karte",130,475 );
+        g.drawString("normale Karte",330,475 );
+        g.drawString("große Karte",530,475 );
 
         g.drawString("Letzte Runde: ", WINDOW_WIDTH - 300, 60);
         g.drawRect(WINDOW_WIDTH - 300,150,80,50);
