@@ -26,6 +26,7 @@ public class Snake {
     private static Snake instance;
 
     private final ArrayList<Game> games = new ArrayList<>();
+    private int gameCount = 0;
     private Player playerOne, playerTwo, playerThree, playerFour;
     private Game currentGame;
     private SnakeMenu currentMenu;
@@ -75,13 +76,14 @@ public class Snake {
         if(this.currentGame != null)
             return;
 
-        if(this.games.size() > 15) {
-            for(int i = 0; i < (this.games.size()-15); i++) {
-                this.games.remove(1);
-            }
+        System.out.println("size: "+this.games.size()+ " :: "+ this.gameCount);
+
+        if(this.games.size() > 14) {
+            this.games.remove(0);
         }
 
         this.games.add(game);
+        this.gameCount++;
 
 
         this.currentGame = game;
@@ -182,5 +184,9 @@ public class Snake {
 
     public JFrame getWindowFrame() {
         return windowFrame;
+    }
+
+    public int getGameCount() {
+        return gameCount;
     }
 }

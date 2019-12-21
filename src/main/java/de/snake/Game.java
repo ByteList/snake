@@ -35,13 +35,17 @@ public class Game {
             public void run() {
                 ticksPerSecond++;
 
-                if(deadPlayers.size() == players.size()-1) {
+                if(deadPlayers.size() >= players.size()-1) {
                     gameTimer.cancel();
                     counterTimer.cancel();
                     players.forEach(player -> {
                         if(player.isAlive())
                             winner = player;
                     });
+
+                    if(winner == null) {
+                        winner = deadPlayers.get(deadPlayers.size()-1);
+                    }
                     ticksPerSecond = 0;
                 }
 
@@ -52,8 +56,10 @@ public class Game {
 
                         return;
                     }
-                    if(!deadPlayers.contains(player))
+                    if(!deadPlayers.contains(player)) {
                         deadPlayers.add(player);
+                        System.out.println("Dead: "+player.getDisplayName());
+                    }
                 });
 
                 snake.getCurrentMenu().repaint();

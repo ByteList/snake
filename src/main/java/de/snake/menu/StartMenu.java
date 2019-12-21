@@ -352,7 +352,7 @@ public class StartMenu extends SnakeMenu {
             snakeMap = MAPS.get("large");
         }
 
-        game = new Game(snake.getGames().size(), snakeMap);
+        game = new Game(snake.getGameCount(), snakeMap);
 
         if(buttonPlayerOne.getActionCommand().equals("click:disable")) {
             game.registerPlayer(snake.getPlayerOne());
