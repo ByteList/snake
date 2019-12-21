@@ -21,10 +21,12 @@ public class Player {
     private Direction direction;
     private boolean alive = true;
     private Image snakeHead;
+    private int selected;
 
-    public Player(int id, String displayName) {
+    public Player(int id, String displayName, int selected) {
         this.id = id;
         this.displayName = displayName;
+        this.selected = selected;
     }
 
     public void setDirection(Direction direction) {
@@ -104,4 +106,11 @@ public class Player {
         this.snakeHead = snakeHead;
     }
 
+    public int getSelected() {
+        return selected;
+    }
+
+    public void setSelected(int selected) {
+        this.selected = selected;
+    }
 }

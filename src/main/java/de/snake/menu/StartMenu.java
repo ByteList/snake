@@ -70,9 +70,9 @@ public class StartMenu extends SnakeMenu {
         setButton(buttonPlayerTwo, "playerTwo");
         setButton(buttonPlayerThree, "playerThree");
         setButton(buttonPlayerFour, "playerFour");
-        setButton(buttonMapSmall, "mapSmall");
-        setButton(buttonMapMedium, "mapMedium");
-        setButton(buttonMapLarge, "mapLarge");
+        setButton(buttonMapSmall, "mapSmall", false);
+        setButton(buttonMapMedium, "mapMedium", false);
+        setButton(buttonMapLarge, "mapLarge", false);
         setButton(buttonStartGame, "startGame", false);
 
         buttonStartGame.setActionCommand("click:startGame");
@@ -86,6 +86,21 @@ public class StartMenu extends SnakeMenu {
         this.add(buttonMapLarge);
 
         setButtonEnabled(buttonMapMedium, true);
+        if(snake.getGames().size() > 0) {
+            switch (snake.getGames().get(snake.getGames().size()-1).getSnakeMap().getName()) {
+                case "small":
+                    setButtonEnabled(this.buttonMapSmall, true);
+                    break;
+                case "medium":
+                    setButtonEnabled(this.buttonMapMedium, true);
+                    break;
+                case "large":
+                    setButtonEnabled(this.buttonMapLarge, true);
+                    break;
+            }
+        }
+
+
 
 //        try {
 //            Image img = ImageIO.read(getClass().getResource("/material/items/test.gif"));
@@ -203,6 +218,21 @@ public class StartMenu extends SnakeMenu {
         });
 
 
+        if(snake.getPlayerOne().getSelected() == 1)
+            setButtonEnabled(this.buttonPlayerOne, true);
+        else setButtonEnabled(this.buttonPlayerOne, false);
+
+        if(snake.getPlayerTwo().getSelected() == 1)
+            setButtonEnabled(this.buttonPlayerTwo, true);
+        else setButtonEnabled(this.buttonPlayerTwo, false);
+
+        if(snake.getPlayerThree().getSelected() == 1)
+            setButtonEnabled(this.buttonPlayerThree, true);
+        else setButtonEnabled(this.buttonPlayerThree, false);
+
+        if(snake.getPlayerFour().getSelected() == 1)
+            setButtonEnabled(this.buttonPlayerFour, true);
+        else setButtonEnabled(this.buttonPlayerFour, false);
 
 
         Toolkit.getDefaultToolkit().sync();
@@ -211,10 +241,6 @@ public class StartMenu extends SnakeMenu {
 
     @Override
     public void onKeyPressed(KeyEvent e) {
-        System.out.println("Key: "+e.getKeyCode());
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            snake.exit();
-        }
     }
 
     @Override
@@ -229,8 +255,9 @@ public class StartMenu extends SnakeMenu {
 
 
     private void setButton(JButton button, String name){
-        setButton(button, name, true);
+        setButton(button, name, false);
     }
+
     private void setButton(JButton button, String name, boolean iconButton) {
         button.setName(name);
 
@@ -257,10 +284,27 @@ public class StartMenu extends SnakeMenu {
         });
     }
 
-    private void setButtonEnabled(JButton button, boolean enabled) {
+    private void setButtonEnabled(JButton button, boolean enabled, JButton... negativeButtons) {
         if(enabled && enabledImage != null) {
             button.setIcon(enabledImage);
             button.setActionCommand("click:disable");
+
+            for(JButton negativeButton : negativeButtons) {
+                setButtonEnabled(negativeButton, false);
+            }
+
+            if(button.getName().equals("playerOne")) {
+                snake.getPlayerOne().setSelected(1);
+            }
+            if(button.getName().equals("playerTwo")) {
+                snake.getPlayerTwo().setSelected(1);
+            }
+            if(button.getName().equals("playerThree")) {
+                snake.getPlayerThree().setSelected(1);
+            }
+            if(button.getName().equals("playerFour")) {
+                snake.getPlayerFour().setSelected(1);
+            }
 
             if(button.getName().equals("mapSmall")) {
                 setButtonEnabled(buttonMapMedium, false);
@@ -279,6 +323,20 @@ public class StartMenu extends SnakeMenu {
         if(!enabled && disabledImage != null) {
             button.setIcon(disabledImage);
             button.setActionCommand("click:enable");
+
+
+            if(button.getName().equals("playerOne")) {
+                snake.getPlayerOne().setSelected(0);
+            }
+            if(button.getName().equals("playerTwo")) {
+                snake.getPlayerTwo().setSelected(0);
+            }
+            if(button.getName().equals("playerThree")) {
+                snake.getPlayerThree().setSelected(0);
+            }
+            if(button.getName().equals("playerFour")) {
+                snake.getPlayerFour().setSelected(0);
+            }
         }
     }
 

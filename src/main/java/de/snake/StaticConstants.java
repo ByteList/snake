@@ -27,9 +27,9 @@ public class StaticConstants {
     public static final int PLAYER_FOUR_KEY_LEFT = KeyEvent.VK_B, PLAYER_FOUR_KEY_RIGHT = KeyEvent.VK_M;
 
     public static final HashMap<String, SnakeMap> MAPS = new HashMap<String, SnakeMap>() {{
-        put("small", new SnakeMap(WINDOW_WIDTH-350-200, WINDOW_HEIGHT-100, "/material/background/small.jpg"));
-        put("medium", new SnakeMap(WINDOW_WIDTH-350-100, WINDOW_HEIGHT-50, "/material/background/middle.jpg"));
-        put("large", new SnakeMap(WINDOW_WIDTH-350, WINDOW_HEIGHT, "/material/background/big.jpg"));
+        put("small", new SnakeMap("small", WINDOW_WIDTH-350-200, WINDOW_HEIGHT-100, "/material/background/small.jpg"));
+        put("medium", new SnakeMap("medium", WINDOW_WIDTH-350-100, WINDOW_HEIGHT-50, "/material/background/middle.jpg"));
+        put("large", new SnakeMap("large", WINDOW_WIDTH-350, WINDOW_HEIGHT, "/material/background/big.jpg"));
     }};
 
 }

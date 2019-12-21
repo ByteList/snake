@@ -106,14 +106,6 @@ public class IngameMenu extends SnakeMenu {
 
     @Override
     public void onKeyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            game.pause();
-            if(!snake.exit())
-                game.start();
-            return;
-        }
-
-        Direction direction = null;
         Player playerOne = snake.getPlayerOne(),
         playerTwo = snake.getPlayerTwo(),
         playerThree = snake.getPlayerThree(),
@@ -122,6 +114,15 @@ public class IngameMenu extends SnakeMenu {
         System.out.println(e.getKeyCode());
 
         switch (e.getKeyCode()) {
+            case KeyEvent.VK_ESCAPE:
+                game.pause();
+                if(!snake.exit())
+                    game.start();
+                break;
+            case KeyEvent.VK_SPACE:
+                if(game.getWinner() != null)
+                    snake.endGame();
+                break;
             case StaticConstants.PLAYER_ONE_KEY_LEFT:
                 playerOne.setDirection(playerOne.getDirection().getLeftDirection());
                 break;

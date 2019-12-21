@@ -19,7 +19,7 @@ public class SnakeLauncher {
 
         EventQueue.invokeLater(()-> {
             Snake snake = new Snake();
-            snake.loadSnakeMenu(new StartMenu());
+//            snake.loadSnakeMenu(new StartMenu());
         });
     }
 }

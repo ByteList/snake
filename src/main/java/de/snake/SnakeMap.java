@@ -6,11 +6,14 @@ import java.io.IOException;
 
 public class SnakeMap {
 
+    private String name;
+
     private int width, height;
 
     private Image foregroundImage;
 
-    public SnakeMap(int width, int height, String foregroundPath) {
+    public SnakeMap(String name, int width, int height, String foregroundPath) {
+        this.name = name;
         this.width = width;
         this.height = height;
 
@@ -20,6 +23,10 @@ public class SnakeMap {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getWidth() {

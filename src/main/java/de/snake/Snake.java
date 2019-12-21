@@ -39,8 +39,11 @@ public class Snake {
         this.windowFrame = new JFrame("Snake");
         this.windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
         this.windowFrame.addKeyListener(new SnakeKeyListener());
         this.windowFrame.addMouseListener(new SnakeMouseListener());
+
+        loadSnakeMenu(new StartMenu());
     }
 
     public void loadSnakeMenu(SnakeMenu snakeMenu) {
@@ -50,7 +53,6 @@ public class Snake {
         if(currentMenu != null) {
             this.windowFrame.remove(currentMenu);
             this.windowFrame.setVisible(false);
-
         }
 
         this.windowFrame.add(snakeMenu);
@@ -62,12 +64,19 @@ public class Snake {
         this.windowFrame.setVisible(true);
 
 
+
         currentMenu = snakeMenu;
     }
 
     public void startGame(Game game) {
         if(this.currentGame != null)
             return;
+
+        if(this.games.size() > 15) {
+            for(int i = 0; i < (this.games.size()-15); i++) {
+                this.games.remove(1);
+            }
+        }
 
         this.games.add(game);
 
@@ -90,16 +99,31 @@ public class Snake {
             return;
 
         this.currentGame = null;
-        this.loadSnakeMenu(new StartMenu());
 
         setPlayers();
+
+        this.loadSnakeMenu(new StartMenu());
     }
 
     public void setPlayers() {
-        this.playerOne = new Player(0, "Spieler 1");
-        this.playerTwo = new Player(1, "Spieler 2");
-        this.playerThree = new Player(2, "Spieler 3");
-        this.playerFour = new Player(3, "Spieler 4");
+        int selectedOne = 0, selectedTwo = 0, selectedThree = 0, selectedFour = 0;
+
+        if(this.playerOne != null)
+            selectedOne = this.playerOne.getSelected();
+
+        if(this.playerTwo != null)
+            selectedTwo = this.playerTwo.getSelected();
+
+        if(this.playerThree != null)
+            selectedThree = this.playerThree.getSelected();
+
+        if(this.playerFour != null)
+            selectedFour = this.playerFour.getSelected();
+
+        this.playerOne = new Player(0, "Spieler 1", selectedOne);
+        this.playerTwo = new Player(1, "Spieler 2", selectedTwo);
+        this.playerThree = new Player(2, "Spieler 3", selectedThree);
+        this.playerFour = new Player(3, "Spieler 4", selectedFour);
 
         this.playerOne.setLineColor(new Color(255, 50, 44));
         this.playerTwo.setLineColor(new Color(50, 255, 44));
