@@ -18,7 +18,7 @@ public class Player {
     private Color lineColor = Color.RED;
     private int x, y;
     private final HashMap<String, Integer> linePoints = new HashMap<>();
-    private Direction direction;
+    private Direction direction = Direction.EAST;
     private boolean alive = true;
     private Image snakeHead;
     private int selected;
