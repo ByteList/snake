@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ThreadLocalRandom;
@@ -34,7 +35,6 @@ public class Snake {
     public Snake() {
         instance = this;
 
-        setPlayers();
 
         this.windowFrame = new JFrame("Snake");
         this.windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +43,10 @@ public class Snake {
         this.windowFrame.addKeyListener(new SnakeKeyListener());
         this.windowFrame.addMouseListener(new SnakeMouseListener());
 
+        setPlayers();
+
         loadSnakeMenu(new StartMenu());
+
     }
 
     public void loadSnakeMenu(SnakeMenu snakeMenu) {
@@ -130,14 +133,10 @@ public class Snake {
         this.playerThree.setLineColor(new Color(251, 255, 61));
         this.playerFour.setLineColor(new Color(44, 112, 255));
 
-        try {
-            this.playerOne.setSnakeHead(ImageIO.read(getClass().getResource("/material/snake/snakegifROT.gif")));
-            this.playerTwo.setSnakeHead(ImageIO.read(getClass().getResource("/material/snake/snakegifgreen.gif")));
-            this.playerThree.setSnakeHead(ImageIO.read(getClass().getResource("/material/snake/snakegifgelb.gif")));
-            this.playerFour.setSnakeHead(ImageIO.read(getClass().getResource("/material/snake/snakegifblau.gif")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.playerOne.setSnakeHead(windowFrame.getToolkit().createImage(getClass().getResource("/material/snake/snakegifROT.gif")));
+        this.playerTwo.setSnakeHead(windowFrame.getToolkit().createImage(getClass().getResource("/material/snake/snakegifgreen.gif")));
+        this.playerThree.setSnakeHead(windowFrame.getToolkit().createImage(getClass().getResource("/material/snake/snakegifgelb.gif")));
+        this.playerFour.setSnakeHead(windowFrame.getToolkit().createImage(getClass().getResource("/material/snake/snakegifblau.gif")));
     }
 
     public boolean exit() {
