@@ -22,12 +22,9 @@ public class Player {
     private boolean alive = true;
     private Image snakeHead;
 
-    public Player(int id, String displayName, int x, int y, Direction direction) {
+    public Player(int id, String displayName) {
         this.id = id;
         this.displayName = displayName;
-
-        this.setDirection(direction);
-        this.setXY(x, y);
     }
 
     public void setDirection(Direction direction) {

@@ -113,6 +113,11 @@ public class StartMenu extends SnakeMenu {
     }
 
     private void doDrawing(Graphics g) {
+//        try {
+//            g.drawImage(ImageIO.read(getClass().getResource("/material/background/menu.jpg")), 0, 0, this);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         g.fillRect(0, WINDOW_HEIGHT / 2,WINDOW_WIDTH - 350,1);
         g.fillRect(WINDOW_WIDTH - 350, 0,1,WINDOW_HEIGHT);

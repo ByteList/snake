@@ -2,10 +2,12 @@ package de.snake.menu;
 
 import de.snake.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import static de.snake.StaticConstants.WINDOW_HEIGHT;
 import static de.snake.StaticConstants.WINDOW_WIDTH;
@@ -20,20 +22,27 @@ public class IngameMenu extends SnakeMenu {
     private final Snake snake = Snake.getInstance();
     private final Game game = snake.getCurrentGame();
 
+    private Image backgroundImage;
+
     private final JButton backToStartButton = new JButton("Zurück ins Startmenü");
     private final JButton endButton = new JButton("Beenden");
 
     public IngameMenu() {
         super("Snake - Im Spiel");
 
-        backToStartButton.addActionListener(e -> {
-            snake.endGame();
-        });
+        try {
+            Image image = ImageIO.read(getClass().getResource("/material/background/dirt.jpg"));
+
+            this.backgroundImage = image.getScaledInstance(StaticConstants.MAPS.get("large").getWidth(),
+                    StaticConstants.MAPS.get("large").getHeight(), 10);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        backToStartButton.addActionListener(e -> snake.endGame());
         backToStartButton.setVisible(false);
 
-        endButton.addActionListener(e -> {
-            snake.exit();
-        });
+        endButton.addActionListener(e -> snake.exit());
         endButton.setVisible(false);
 
         this.add(backToStartButton);
@@ -44,9 +53,11 @@ public class IngameMenu extends SnakeMenu {
     public void paint(Graphics g) {
         super.paint(g);
 
+        g.drawImage(this.backgroundImage, 0, 0, this);
+        g.drawImage(game.getSnakeMap().getForegroundImage(), 0, 0, this);
+
         g.fillRect(WINDOW_WIDTH - 350, 0, 1, WINDOW_HEIGHT);
 
-        g.drawImage(game.getSnakeMap().getBackgroundImage(), 0, 0, this);
 
         g.fillRect(0, game.getSnakeMap().getHeight(), game.getSnakeMap().getWidth(), 1);
         g.fillRect(game.getSnakeMap().getWidth(), 0, 1, game.getSnakeMap().getHeight());
@@ -58,11 +69,9 @@ public class IngameMenu extends SnakeMenu {
 
         game.getPlayers().forEach(player -> {
             g.setColor(player.getLineColor());
-            player.getLinePoints().forEach((point, thickness) -> {
-
-                g.fillOval(Integer.parseInt(point.split(";")[0]), Integer.parseInt(point.split(";")[1]),
-                        thickness, thickness);
-            });
+            player.getLinePoints().forEach((point, thickness) ->
+                    g.fillOval(Integer.parseInt(point.split(";")[0]),
+                            Integer.parseInt(point.split(";")[1]), thickness, thickness));
 
             g.setColor(Color.GREEN);
             if(player.getSnakeHead() == null)

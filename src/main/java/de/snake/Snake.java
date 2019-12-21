@@ -96,10 +96,10 @@ public class Snake {
     }
 
     public void setPlayers() {
-        this.playerOne = new Player(0, "Spieler 1", 100, 100, Direction.EAST);
-        this.playerTwo = new Player(1, "Spieler 2", 300, 10, Direction.EAST);
-        this.playerThree = new Player(2, "Spieler 3", 20, 300, Direction.SOUTH);
-        this.playerFour = new Player(3, "Spieler 4", 10, 10, Direction.EAST);
+        this.playerOne = new Player(0, "Spieler 1");
+        this.playerTwo = new Player(1, "Spieler 2");
+        this.playerThree = new Player(2, "Spieler 3");
+        this.playerFour = new Player(3, "Spieler 4");
 
         this.playerOne.setLineColor(new Color(255, 50, 44));
         this.playerTwo.setLineColor(new Color(50, 255, 44));

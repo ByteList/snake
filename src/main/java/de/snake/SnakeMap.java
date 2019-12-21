@@ -7,18 +7,16 @@ import java.io.IOException;
 public class SnakeMap {
 
     private int width, height;
-    private String backgroundPath;
 
-    private Image backgroundImage;
+    private Image foregroundImage;
 
-    public SnakeMap(int width, int height, String backgroundPath) {
+    public SnakeMap(int width, int height, String foregroundPath) {
         this.width = width;
         this.height = height;
-        this.backgroundPath = backgroundPath;
 
         try {
-            Image image  = ImageIO.read(getClass().getResource(backgroundPath));
-            this.backgroundImage = image.getScaledInstance(width, height, 10);
+            Image image  = ImageIO.read(getClass().getResource(foregroundPath));
+            this.foregroundImage = image.getScaledInstance(width, height, 10);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,11 +30,8 @@ public class SnakeMap {
         return height;
     }
 
-    public String getBackgroundPath() {
-        return backgroundPath;
+    public Image getForegroundImage() {
+        return foregroundImage;
     }
 
-    public Image getBackgroundImage() {
-        return backgroundImage;
-    }
 }

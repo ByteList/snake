@@ -32,13 +32,4 @@ public class StaticConstants {
         put("large", new SnakeMap(WINDOW_WIDTH-350, WINDOW_HEIGHT, "/material/background/big.jpg"));
     }};
 
-    public static final HashMap<int[], Direction[]> SPAWN_POINTS = new HashMap<int[], Direction[]>() {{
-        put(new int[]{ 100, 100 }, new Direction[]{ Direction.SOUTH, Direction.EAST });
-        put(new int[]{ 300, 50 }, new Direction[]{ Direction.SOUTH, Direction.EAST });
-
-        put(new int[]{ 250, 250 }, new Direction[]{ Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST });
-
-        put(new int[]{ 400, 200 }, new Direction[]{ Direction.NORTH, Direction.WEST });
-    }};
-
 }
